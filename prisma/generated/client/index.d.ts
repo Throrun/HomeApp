@@ -24,6 +24,11 @@ export type Profile = $Result.DefaultSelection<Prisma.$ProfilePayload>
  */
 export type Room = $Result.DefaultSelection<Prisma.$RoomPayload>
 /**
+ * Model ProfilesOfRooms
+ * 
+ */
+export type ProfilesOfRooms = $Result.DefaultSelection<Prisma.$ProfilesOfRoomsPayload>
+/**
  * Model Shelf
  * 
  */
@@ -199,6 +204,16 @@ export class PrismaClient<
     * ```
     */
   get room(): Prisma.RoomDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.profilesOfRooms`: Exposes CRUD operations for the **ProfilesOfRooms** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProfilesOfRooms
+    * const profilesOfRooms = await prisma.profilesOfRooms.findMany()
+    * ```
+    */
+  get profilesOfRooms(): Prisma.ProfilesOfRoomsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.shelf`: Exposes CRUD operations for the **Shelf** model.
@@ -661,6 +676,7 @@ export namespace Prisma {
   export const ModelName: {
     Profile: 'Profile',
     Room: 'Room',
+    ProfilesOfRooms: 'ProfilesOfRooms',
     Shelf: 'Shelf',
     Item: 'Item'
   };
@@ -681,7 +697,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "profile" | "room" | "shelf" | "item"
+      modelProps: "profile" | "room" | "profilesOfRooms" | "shelf" | "item"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -814,6 +830,72 @@ export namespace Prisma {
           count: {
             args: Prisma.RoomCountArgs<ExtArgs>
             result: $Utils.Optional<RoomCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProfilesOfRooms: {
+        payload: Prisma.$ProfilesOfRoomsPayload<ExtArgs>
+        fields: Prisma.ProfilesOfRoomsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProfilesOfRoomsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProfilesOfRoomsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload>
+          }
+          findFirst: {
+            args: Prisma.ProfilesOfRoomsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProfilesOfRoomsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload>
+          }
+          findMany: {
+            args: Prisma.ProfilesOfRoomsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload>[]
+          }
+          create: {
+            args: Prisma.ProfilesOfRoomsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload>
+          }
+          createMany: {
+            args: Prisma.ProfilesOfRoomsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProfilesOfRoomsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload>
+          }
+          update: {
+            args: Prisma.ProfilesOfRoomsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProfilesOfRoomsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProfilesOfRoomsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProfilesOfRoomsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfilesOfRoomsPayload>
+          }
+          aggregate: {
+            args: Prisma.ProfilesOfRoomsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProfilesOfRooms>
+          }
+          groupBy: {
+            args: Prisma.ProfilesOfRoomsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProfilesOfRoomsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProfilesOfRoomsCountArgs<ExtArgs>
+            result: $Utils.Optional<ProfilesOfRoomsCountAggregateOutputType> | number
           }
         }
       }
@@ -1035,6 +1117,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     profile?: ProfileOmit
     room?: RoomOmit
+    profilesOfRooms?: ProfilesOfRoomsOmit
     shelf?: ShelfOmit
     item?: ItemOmit
   }
@@ -1131,15 +1214,15 @@ export namespace Prisma {
    */
 
   export type ProfileCountOutputType = {
-    rooms: number
     shelfs: number
     items: number
+    profilesOfRooms: number
   }
 
   export type ProfileCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rooms?: boolean | ProfileCountOutputTypeCountRoomsArgs
     shelfs?: boolean | ProfileCountOutputTypeCountShelfsArgs
     items?: boolean | ProfileCountOutputTypeCountItemsArgs
+    profilesOfRooms?: boolean | ProfileCountOutputTypeCountProfilesOfRoomsArgs
   }
 
   // Custom InputTypes
@@ -1156,13 +1239,6 @@ export namespace Prisma {
   /**
    * ProfileCountOutputType without action
    */
-  export type ProfileCountOutputTypeCountRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: RoomWhereInput
-  }
-
-  /**
-   * ProfileCountOutputType without action
-   */
   export type ProfileCountOutputTypeCountShelfsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ShelfWhereInput
   }
@@ -1174,6 +1250,13 @@ export namespace Prisma {
     where?: ItemWhereInput
   }
 
+  /**
+   * ProfileCountOutputType without action
+   */
+  export type ProfileCountOutputTypeCountProfilesOfRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfilesOfRoomsWhereInput
+  }
+
 
   /**
    * Count Type RoomCountOutputType
@@ -1181,10 +1264,12 @@ export namespace Prisma {
 
   export type RoomCountOutputType = {
     shelfs: number
+    profilesOfRooms: number
   }
 
   export type RoomCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     shelfs?: boolean | RoomCountOutputTypeCountShelfsArgs
+    profilesOfRooms?: boolean | RoomCountOutputTypeCountProfilesOfRoomsArgs
   }
 
   // Custom InputTypes
@@ -1203,6 +1288,13 @@ export namespace Prisma {
    */
   export type RoomCountOutputTypeCountShelfsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ShelfWhereInput
+  }
+
+  /**
+   * RoomCountOutputType without action
+   */
+  export type RoomCountOutputTypeCountProfilesOfRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfilesOfRoomsWhereInput
   }
 
 
@@ -1423,9 +1515,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     surname?: boolean
-    rooms?: boolean | Profile$roomsArgs<ExtArgs>
     shelfs?: boolean | Profile$shelfsArgs<ExtArgs>
     items?: boolean | Profile$itemsArgs<ExtArgs>
+    profilesOfRooms?: boolean | Profile$profilesOfRoomsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["profile"]>
 
@@ -1439,18 +1531,18 @@ export namespace Prisma {
 
   export type ProfileOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "surname", ExtArgs["result"]["profile"]>
   export type ProfileInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    rooms?: boolean | Profile$roomsArgs<ExtArgs>
     shelfs?: boolean | Profile$shelfsArgs<ExtArgs>
     items?: boolean | Profile$itemsArgs<ExtArgs>
+    profilesOfRooms?: boolean | Profile$profilesOfRoomsArgs<ExtArgs>
     _count?: boolean | ProfileCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $ProfilePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Profile"
     objects: {
-      rooms: Prisma.$RoomPayload<ExtArgs>[]
       shelfs: Prisma.$ShelfPayload<ExtArgs>[]
       items: Prisma.$ItemPayload<ExtArgs>[]
+      profilesOfRooms: Prisma.$ProfilesOfRoomsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1796,9 +1888,9 @@ export namespace Prisma {
    */
   export interface Prisma__ProfileClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    rooms<T extends Profile$roomsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$roomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     shelfs<T extends Profile$shelfsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$shelfsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     items<T extends Profile$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    profilesOfRooms<T extends Profile$profilesOfRoomsArgs<ExtArgs> = {}>(args?: Subset<T, Profile$profilesOfRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2174,30 +2266,6 @@ export namespace Prisma {
   }
 
   /**
-   * Profile.rooms
-   */
-  export type Profile$roomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Room
-     */
-    select?: RoomSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Room
-     */
-    omit?: RoomOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: RoomInclude<ExtArgs> | null
-    where?: RoomWhereInput
-    orderBy?: RoomOrderByWithRelationInput | RoomOrderByWithRelationInput[]
-    cursor?: RoomWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: RoomScalarFieldEnum | RoomScalarFieldEnum[]
-  }
-
-  /**
    * Profile.shelfs
    */
   export type Profile$shelfsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2246,6 +2314,30 @@ export namespace Prisma {
   }
 
   /**
+   * Profile.profilesOfRooms
+   */
+  export type Profile$profilesOfRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    where?: ProfilesOfRoomsWhereInput
+    orderBy?: ProfilesOfRoomsOrderByWithRelationInput | ProfilesOfRoomsOrderByWithRelationInput[]
+    cursor?: ProfilesOfRoomsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProfilesOfRoomsScalarFieldEnum | ProfilesOfRoomsScalarFieldEnum[]
+  }
+
+  /**
    * Profile without action
    */
   export type ProfileDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2278,66 +2370,56 @@ export namespace Prisma {
 
   export type RoomAvgAggregateOutputType = {
     id: number | null
-    ownerId: number | null
   }
 
   export type RoomSumAggregateOutputType = {
     id: number | null
-    ownerId: number | null
   }
 
   export type RoomMinAggregateOutputType = {
     id: number | null
     name: string | null
     description: string | null
-    ownerId: number | null
   }
 
   export type RoomMaxAggregateOutputType = {
     id: number | null
     name: string | null
     description: string | null
-    ownerId: number | null
   }
 
   export type RoomCountAggregateOutputType = {
     id: number
     name: number
     description: number
-    ownerId: number
     _all: number
   }
 
 
   export type RoomAvgAggregateInputType = {
     id?: true
-    ownerId?: true
   }
 
   export type RoomSumAggregateInputType = {
     id?: true
-    ownerId?: true
   }
 
   export type RoomMinAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
   }
 
   export type RoomMaxAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
   }
 
   export type RoomCountAggregateInputType = {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
     _all?: true
   }
 
@@ -2431,7 +2513,6 @@ export namespace Prisma {
     id: number
     name: string
     description: string | null
-    ownerId: number
     _count: RoomCountAggregateOutputType | null
     _avg: RoomAvgAggregateOutputType | null
     _sum: RoomSumAggregateOutputType | null
@@ -2457,9 +2538,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    ownerId?: boolean
-    owner?: boolean | ProfileDefaultArgs<ExtArgs>
     shelfs?: boolean | Room$shelfsArgs<ExtArgs>
+    profilesOfRooms?: boolean | Room$profilesOfRoomsArgs<ExtArgs>
     _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["room"]>
 
@@ -2469,27 +2549,25 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    ownerId?: boolean
   }
 
-  export type RoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "ownerId", ExtArgs["result"]["room"]>
+  export type RoomOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description", ExtArgs["result"]["room"]>
   export type RoomInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | ProfileDefaultArgs<ExtArgs>
     shelfs?: boolean | Room$shelfsArgs<ExtArgs>
+    profilesOfRooms?: boolean | Room$profilesOfRoomsArgs<ExtArgs>
     _count?: boolean | RoomCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $RoomPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Room"
     objects: {
-      owner: Prisma.$ProfilePayload<ExtArgs>
       shelfs: Prisma.$ShelfPayload<ExtArgs>[]
+      profilesOfRooms: Prisma.$ProfilesOfRoomsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       description: string | null
-      ownerId: number
     }, ExtArgs["result"]["room"]>
     composites: {}
   }
@@ -2830,8 +2908,8 @@ export namespace Prisma {
    */
   export interface Prisma__RoomClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    owner<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     shelfs<T extends Room$shelfsArgs<ExtArgs> = {}>(args?: Subset<T, Room$shelfsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    profilesOfRooms<T extends Room$profilesOfRoomsArgs<ExtArgs> = {}>(args?: Subset<T, Room$profilesOfRoomsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2864,7 +2942,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Room", 'Int'>
     readonly name: FieldRef<"Room", 'String'>
     readonly description: FieldRef<"Room", 'String'>
-    readonly ownerId: FieldRef<"Room", 'Int'>
   }
     
 
@@ -3232,6 +3309,30 @@ export namespace Prisma {
   }
 
   /**
+   * Room.profilesOfRooms
+   */
+  export type Room$profilesOfRoomsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    where?: ProfilesOfRoomsWhereInput
+    orderBy?: ProfilesOfRoomsOrderByWithRelationInput | ProfilesOfRoomsOrderByWithRelationInput[]
+    cursor?: ProfilesOfRoomsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProfilesOfRoomsScalarFieldEnum | ProfilesOfRoomsScalarFieldEnum[]
+  }
+
+  /**
    * Room without action
    */
   export type RoomDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3251,6 +3352,944 @@ export namespace Prisma {
 
 
   /**
+   * Model ProfilesOfRooms
+   */
+
+  export type AggregateProfilesOfRooms = {
+    _count: ProfilesOfRoomsCountAggregateOutputType | null
+    _avg: ProfilesOfRoomsAvgAggregateOutputType | null
+    _sum: ProfilesOfRoomsSumAggregateOutputType | null
+    _min: ProfilesOfRoomsMinAggregateOutputType | null
+    _max: ProfilesOfRoomsMaxAggregateOutputType | null
+  }
+
+  export type ProfilesOfRoomsAvgAggregateOutputType = {
+    profileId: number | null
+    roomId: number | null
+  }
+
+  export type ProfilesOfRoomsSumAggregateOutputType = {
+    profileId: number | null
+    roomId: number | null
+  }
+
+  export type ProfilesOfRoomsMinAggregateOutputType = {
+    profileId: number | null
+    roomId: number | null
+  }
+
+  export type ProfilesOfRoomsMaxAggregateOutputType = {
+    profileId: number | null
+    roomId: number | null
+  }
+
+  export type ProfilesOfRoomsCountAggregateOutputType = {
+    profileId: number
+    roomId: number
+    _all: number
+  }
+
+
+  export type ProfilesOfRoomsAvgAggregateInputType = {
+    profileId?: true
+    roomId?: true
+  }
+
+  export type ProfilesOfRoomsSumAggregateInputType = {
+    profileId?: true
+    roomId?: true
+  }
+
+  export type ProfilesOfRoomsMinAggregateInputType = {
+    profileId?: true
+    roomId?: true
+  }
+
+  export type ProfilesOfRoomsMaxAggregateInputType = {
+    profileId?: true
+    roomId?: true
+  }
+
+  export type ProfilesOfRoomsCountAggregateInputType = {
+    profileId?: true
+    roomId?: true
+    _all?: true
+  }
+
+  export type ProfilesOfRoomsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProfilesOfRooms to aggregate.
+     */
+    where?: ProfilesOfRoomsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfilesOfRooms to fetch.
+     */
+    orderBy?: ProfilesOfRoomsOrderByWithRelationInput | ProfilesOfRoomsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProfilesOfRoomsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfilesOfRooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfilesOfRooms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProfilesOfRooms
+    **/
+    _count?: true | ProfilesOfRoomsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProfilesOfRoomsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProfilesOfRoomsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProfilesOfRoomsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProfilesOfRoomsMaxAggregateInputType
+  }
+
+  export type GetProfilesOfRoomsAggregateType<T extends ProfilesOfRoomsAggregateArgs> = {
+        [P in keyof T & keyof AggregateProfilesOfRooms]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProfilesOfRooms[P]>
+      : GetScalarType<T[P], AggregateProfilesOfRooms[P]>
+  }
+
+
+
+
+  export type ProfilesOfRoomsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfilesOfRoomsWhereInput
+    orderBy?: ProfilesOfRoomsOrderByWithAggregationInput | ProfilesOfRoomsOrderByWithAggregationInput[]
+    by: ProfilesOfRoomsScalarFieldEnum[] | ProfilesOfRoomsScalarFieldEnum
+    having?: ProfilesOfRoomsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProfilesOfRoomsCountAggregateInputType | true
+    _avg?: ProfilesOfRoomsAvgAggregateInputType
+    _sum?: ProfilesOfRoomsSumAggregateInputType
+    _min?: ProfilesOfRoomsMinAggregateInputType
+    _max?: ProfilesOfRoomsMaxAggregateInputType
+  }
+
+  export type ProfilesOfRoomsGroupByOutputType = {
+    profileId: number
+    roomId: number
+    _count: ProfilesOfRoomsCountAggregateOutputType | null
+    _avg: ProfilesOfRoomsAvgAggregateOutputType | null
+    _sum: ProfilesOfRoomsSumAggregateOutputType | null
+    _min: ProfilesOfRoomsMinAggregateOutputType | null
+    _max: ProfilesOfRoomsMaxAggregateOutputType | null
+  }
+
+  type GetProfilesOfRoomsGroupByPayload<T extends ProfilesOfRoomsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProfilesOfRoomsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProfilesOfRoomsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProfilesOfRoomsGroupByOutputType[P]>
+            : GetScalarType<T[P], ProfilesOfRoomsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProfilesOfRoomsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    profileId?: boolean
+    roomId?: boolean
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profilesOfRooms"]>
+
+
+
+  export type ProfilesOfRoomsSelectScalar = {
+    profileId?: boolean
+    roomId?: boolean
+  }
+
+  export type ProfilesOfRoomsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"profileId" | "roomId", ExtArgs["result"]["profilesOfRooms"]>
+  export type ProfilesOfRoomsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
+    room?: boolean | RoomDefaultArgs<ExtArgs>
+  }
+
+  export type $ProfilesOfRoomsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProfilesOfRooms"
+    objects: {
+      profile: Prisma.$ProfilePayload<ExtArgs>
+      room: Prisma.$RoomPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      profileId: number
+      roomId: number
+    }, ExtArgs["result"]["profilesOfRooms"]>
+    composites: {}
+  }
+
+  type ProfilesOfRoomsGetPayload<S extends boolean | null | undefined | ProfilesOfRoomsDefaultArgs> = $Result.GetResult<Prisma.$ProfilesOfRoomsPayload, S>
+
+  type ProfilesOfRoomsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProfilesOfRoomsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProfilesOfRoomsCountAggregateInputType | true
+    }
+
+  export interface ProfilesOfRoomsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProfilesOfRooms'], meta: { name: 'ProfilesOfRooms' } }
+    /**
+     * Find zero or one ProfilesOfRooms that matches the filter.
+     * @param {ProfilesOfRoomsFindUniqueArgs} args - Arguments to find a ProfilesOfRooms
+     * @example
+     * // Get one ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProfilesOfRoomsFindUniqueArgs>(args: SelectSubset<T, ProfilesOfRoomsFindUniqueArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProfilesOfRooms that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProfilesOfRoomsFindUniqueOrThrowArgs} args - Arguments to find a ProfilesOfRooms
+     * @example
+     * // Get one ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProfilesOfRoomsFindUniqueOrThrowArgs>(args: SelectSubset<T, ProfilesOfRoomsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProfilesOfRooms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfilesOfRoomsFindFirstArgs} args - Arguments to find a ProfilesOfRooms
+     * @example
+     * // Get one ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProfilesOfRoomsFindFirstArgs>(args?: SelectSubset<T, ProfilesOfRoomsFindFirstArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProfilesOfRooms that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfilesOfRoomsFindFirstOrThrowArgs} args - Arguments to find a ProfilesOfRooms
+     * @example
+     * // Get one ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProfilesOfRoomsFindFirstOrThrowArgs>(args?: SelectSubset<T, ProfilesOfRoomsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProfilesOfRooms that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfilesOfRoomsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.findMany()
+     * 
+     * // Get first 10 ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.findMany({ take: 10 })
+     * 
+     * // Only select the `profileId`
+     * const profilesOfRoomsWithProfileIdOnly = await prisma.profilesOfRooms.findMany({ select: { profileId: true } })
+     * 
+     */
+    findMany<T extends ProfilesOfRoomsFindManyArgs>(args?: SelectSubset<T, ProfilesOfRoomsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProfilesOfRooms.
+     * @param {ProfilesOfRoomsCreateArgs} args - Arguments to create a ProfilesOfRooms.
+     * @example
+     * // Create one ProfilesOfRooms
+     * const ProfilesOfRooms = await prisma.profilesOfRooms.create({
+     *   data: {
+     *     // ... data to create a ProfilesOfRooms
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProfilesOfRoomsCreateArgs>(args: SelectSubset<T, ProfilesOfRoomsCreateArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProfilesOfRooms.
+     * @param {ProfilesOfRoomsCreateManyArgs} args - Arguments to create many ProfilesOfRooms.
+     * @example
+     * // Create many ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProfilesOfRoomsCreateManyArgs>(args?: SelectSubset<T, ProfilesOfRoomsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ProfilesOfRooms.
+     * @param {ProfilesOfRoomsDeleteArgs} args - Arguments to delete one ProfilesOfRooms.
+     * @example
+     * // Delete one ProfilesOfRooms
+     * const ProfilesOfRooms = await prisma.profilesOfRooms.delete({
+     *   where: {
+     *     // ... filter to delete one ProfilesOfRooms
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProfilesOfRoomsDeleteArgs>(args: SelectSubset<T, ProfilesOfRoomsDeleteArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProfilesOfRooms.
+     * @param {ProfilesOfRoomsUpdateArgs} args - Arguments to update one ProfilesOfRooms.
+     * @example
+     * // Update one ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProfilesOfRoomsUpdateArgs>(args: SelectSubset<T, ProfilesOfRoomsUpdateArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProfilesOfRooms.
+     * @param {ProfilesOfRoomsDeleteManyArgs} args - Arguments to filter ProfilesOfRooms to delete.
+     * @example
+     * // Delete a few ProfilesOfRooms
+     * const { count } = await prisma.profilesOfRooms.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProfilesOfRoomsDeleteManyArgs>(args?: SelectSubset<T, ProfilesOfRoomsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProfilesOfRooms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfilesOfRoomsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProfilesOfRoomsUpdateManyArgs>(args: SelectSubset<T, ProfilesOfRoomsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProfilesOfRooms.
+     * @param {ProfilesOfRoomsUpsertArgs} args - Arguments to update or create a ProfilesOfRooms.
+     * @example
+     * // Update or create a ProfilesOfRooms
+     * const profilesOfRooms = await prisma.profilesOfRooms.upsert({
+     *   create: {
+     *     // ... data to create a ProfilesOfRooms
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProfilesOfRooms we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProfilesOfRoomsUpsertArgs>(args: SelectSubset<T, ProfilesOfRoomsUpsertArgs<ExtArgs>>): Prisma__ProfilesOfRoomsClient<$Result.GetResult<Prisma.$ProfilesOfRoomsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProfilesOfRooms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfilesOfRoomsCountArgs} args - Arguments to filter ProfilesOfRooms to count.
+     * @example
+     * // Count the number of ProfilesOfRooms
+     * const count = await prisma.profilesOfRooms.count({
+     *   where: {
+     *     // ... the filter for the ProfilesOfRooms we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProfilesOfRoomsCountArgs>(
+      args?: Subset<T, ProfilesOfRoomsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProfilesOfRoomsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProfilesOfRooms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfilesOfRoomsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProfilesOfRoomsAggregateArgs>(args: Subset<T, ProfilesOfRoomsAggregateArgs>): Prisma.PrismaPromise<GetProfilesOfRoomsAggregateType<T>>
+
+    /**
+     * Group by ProfilesOfRooms.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfilesOfRoomsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProfilesOfRoomsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProfilesOfRoomsGroupByArgs['orderBy'] }
+        : { orderBy?: ProfilesOfRoomsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProfilesOfRoomsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProfilesOfRoomsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProfilesOfRooms model
+   */
+  readonly fields: ProfilesOfRoomsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProfilesOfRooms.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProfilesOfRoomsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    room<T extends RoomDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoomDefaultArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProfilesOfRooms model
+   */
+  interface ProfilesOfRoomsFieldRefs {
+    readonly profileId: FieldRef<"ProfilesOfRooms", 'Int'>
+    readonly roomId: FieldRef<"ProfilesOfRooms", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProfilesOfRooms findUnique
+   */
+  export type ProfilesOfRoomsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfilesOfRooms to fetch.
+     */
+    where: ProfilesOfRoomsWhereUniqueInput
+  }
+
+  /**
+   * ProfilesOfRooms findUniqueOrThrow
+   */
+  export type ProfilesOfRoomsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfilesOfRooms to fetch.
+     */
+    where: ProfilesOfRoomsWhereUniqueInput
+  }
+
+  /**
+   * ProfilesOfRooms findFirst
+   */
+  export type ProfilesOfRoomsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfilesOfRooms to fetch.
+     */
+    where?: ProfilesOfRoomsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfilesOfRooms to fetch.
+     */
+    orderBy?: ProfilesOfRoomsOrderByWithRelationInput | ProfilesOfRoomsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProfilesOfRooms.
+     */
+    cursor?: ProfilesOfRoomsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfilesOfRooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfilesOfRooms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProfilesOfRooms.
+     */
+    distinct?: ProfilesOfRoomsScalarFieldEnum | ProfilesOfRoomsScalarFieldEnum[]
+  }
+
+  /**
+   * ProfilesOfRooms findFirstOrThrow
+   */
+  export type ProfilesOfRoomsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfilesOfRooms to fetch.
+     */
+    where?: ProfilesOfRoomsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfilesOfRooms to fetch.
+     */
+    orderBy?: ProfilesOfRoomsOrderByWithRelationInput | ProfilesOfRoomsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProfilesOfRooms.
+     */
+    cursor?: ProfilesOfRoomsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfilesOfRooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfilesOfRooms.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProfilesOfRooms.
+     */
+    distinct?: ProfilesOfRoomsScalarFieldEnum | ProfilesOfRoomsScalarFieldEnum[]
+  }
+
+  /**
+   * ProfilesOfRooms findMany
+   */
+  export type ProfilesOfRoomsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfilesOfRooms to fetch.
+     */
+    where?: ProfilesOfRoomsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfilesOfRooms to fetch.
+     */
+    orderBy?: ProfilesOfRoomsOrderByWithRelationInput | ProfilesOfRoomsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProfilesOfRooms.
+     */
+    cursor?: ProfilesOfRoomsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfilesOfRooms from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfilesOfRooms.
+     */
+    skip?: number
+    distinct?: ProfilesOfRoomsScalarFieldEnum | ProfilesOfRoomsScalarFieldEnum[]
+  }
+
+  /**
+   * ProfilesOfRooms create
+   */
+  export type ProfilesOfRoomsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProfilesOfRooms.
+     */
+    data: XOR<ProfilesOfRoomsCreateInput, ProfilesOfRoomsUncheckedCreateInput>
+  }
+
+  /**
+   * ProfilesOfRooms createMany
+   */
+  export type ProfilesOfRoomsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProfilesOfRooms.
+     */
+    data: ProfilesOfRoomsCreateManyInput | ProfilesOfRoomsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProfilesOfRooms update
+   */
+  export type ProfilesOfRoomsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProfilesOfRooms.
+     */
+    data: XOR<ProfilesOfRoomsUpdateInput, ProfilesOfRoomsUncheckedUpdateInput>
+    /**
+     * Choose, which ProfilesOfRooms to update.
+     */
+    where: ProfilesOfRoomsWhereUniqueInput
+  }
+
+  /**
+   * ProfilesOfRooms updateMany
+   */
+  export type ProfilesOfRoomsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProfilesOfRooms.
+     */
+    data: XOR<ProfilesOfRoomsUpdateManyMutationInput, ProfilesOfRoomsUncheckedUpdateManyInput>
+    /**
+     * Filter which ProfilesOfRooms to update
+     */
+    where?: ProfilesOfRoomsWhereInput
+    /**
+     * Limit how many ProfilesOfRooms to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProfilesOfRooms upsert
+   */
+  export type ProfilesOfRoomsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProfilesOfRooms to update in case it exists.
+     */
+    where: ProfilesOfRoomsWhereUniqueInput
+    /**
+     * In case the ProfilesOfRooms found by the `where` argument doesn't exist, create a new ProfilesOfRooms with this data.
+     */
+    create: XOR<ProfilesOfRoomsCreateInput, ProfilesOfRoomsUncheckedCreateInput>
+    /**
+     * In case the ProfilesOfRooms was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProfilesOfRoomsUpdateInput, ProfilesOfRoomsUncheckedUpdateInput>
+  }
+
+  /**
+   * ProfilesOfRooms delete
+   */
+  export type ProfilesOfRoomsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+    /**
+     * Filter which ProfilesOfRooms to delete.
+     */
+    where: ProfilesOfRoomsWhereUniqueInput
+  }
+
+  /**
+   * ProfilesOfRooms deleteMany
+   */
+  export type ProfilesOfRoomsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProfilesOfRooms to delete
+     */
+    where?: ProfilesOfRoomsWhereInput
+    /**
+     * Limit how many ProfilesOfRooms to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProfilesOfRooms without action
+   */
+  export type ProfilesOfRoomsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfilesOfRooms
+     */
+    select?: ProfilesOfRoomsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfilesOfRooms
+     */
+    omit?: ProfilesOfRoomsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfilesOfRoomsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Shelf
    */
 
@@ -3264,13 +4303,13 @@ export namespace Prisma {
 
   export type ShelfAvgAggregateOutputType = {
     id: number | null
-    ownerId: number | null
+    profileId: number | null
     roomId: number | null
   }
 
   export type ShelfSumAggregateOutputType = {
     id: number | null
-    ownerId: number | null
+    profileId: number | null
     roomId: number | null
   }
 
@@ -3278,7 +4317,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     description: string | null
-    ownerId: number | null
+    profileId: number | null
     roomId: number | null
   }
 
@@ -3286,7 +4325,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     description: string | null
-    ownerId: number | null
+    profileId: number | null
     roomId: number | null
   }
 
@@ -3294,7 +4333,7 @@ export namespace Prisma {
     id: number
     name: number
     description: number
-    ownerId: number
+    profileId: number
     roomId: number
     _all: number
   }
@@ -3302,13 +4341,13 @@ export namespace Prisma {
 
   export type ShelfAvgAggregateInputType = {
     id?: true
-    ownerId?: true
+    profileId?: true
     roomId?: true
   }
 
   export type ShelfSumAggregateInputType = {
     id?: true
-    ownerId?: true
+    profileId?: true
     roomId?: true
   }
 
@@ -3316,7 +4355,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
+    profileId?: true
     roomId?: true
   }
 
@@ -3324,7 +4363,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
+    profileId?: true
     roomId?: true
   }
 
@@ -3332,7 +4371,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
+    profileId?: true
     roomId?: true
     _all?: true
   }
@@ -3427,7 +4466,7 @@ export namespace Prisma {
     id: number
     name: string
     description: string | null
-    ownerId: number
+    profileId: number
     roomId: number
     _count: ShelfCountAggregateOutputType | null
     _avg: ShelfAvgAggregateOutputType | null
@@ -3454,9 +4493,9 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    ownerId?: boolean
+    profileId?: boolean
     roomId?: boolean
-    owner?: boolean | ProfileDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
     items?: boolean | Shelf$itemsArgs<ExtArgs>
     _count?: boolean | ShelfCountOutputTypeDefaultArgs<ExtArgs>
@@ -3468,13 +4507,13 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    ownerId?: boolean
+    profileId?: boolean
     roomId?: boolean
   }
 
-  export type ShelfOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "ownerId" | "roomId", ExtArgs["result"]["shelf"]>
+  export type ShelfOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "profileId" | "roomId", ExtArgs["result"]["shelf"]>
   export type ShelfInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | ProfileDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     room?: boolean | RoomDefaultArgs<ExtArgs>
     items?: boolean | Shelf$itemsArgs<ExtArgs>
     _count?: boolean | ShelfCountOutputTypeDefaultArgs<ExtArgs>
@@ -3483,7 +4522,7 @@ export namespace Prisma {
   export type $ShelfPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Shelf"
     objects: {
-      owner: Prisma.$ProfilePayload<ExtArgs>
+      profile: Prisma.$ProfilePayload<ExtArgs>
       room: Prisma.$RoomPayload<ExtArgs>
       items: Prisma.$ItemPayload<ExtArgs>[]
     }
@@ -3491,7 +4530,7 @@ export namespace Prisma {
       id: number
       name: string
       description: string | null
-      ownerId: number
+      profileId: number
       roomId: number
     }, ExtArgs["result"]["shelf"]>
     composites: {}
@@ -3833,7 +4872,7 @@ export namespace Prisma {
    */
   export interface Prisma__ShelfClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    owner<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     room<T extends RoomDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoomDefaultArgs<ExtArgs>>): Prisma__RoomClient<$Result.GetResult<Prisma.$RoomPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     items<T extends Shelf$itemsArgs<ExtArgs> = {}>(args?: Subset<T, Shelf$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -3868,7 +4907,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Shelf", 'Int'>
     readonly name: FieldRef<"Shelf", 'String'>
     readonly description: FieldRef<"Shelf", 'String'>
-    readonly ownerId: FieldRef<"Shelf", 'Int'>
+    readonly profileId: FieldRef<"Shelf", 'Int'>
     readonly roomId: FieldRef<"Shelf", 'Int'>
   }
     
@@ -4269,13 +5308,13 @@ export namespace Prisma {
 
   export type ItemAvgAggregateOutputType = {
     id: number | null
-    ownerId: number | null
+    profileId: number | null
     shelfId: number | null
   }
 
   export type ItemSumAggregateOutputType = {
     id: number | null
-    ownerId: number | null
+    profileId: number | null
     shelfId: number | null
   }
 
@@ -4283,7 +5322,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     description: string | null
-    ownerId: number | null
+    profileId: number | null
     shelfId: number | null
     itemType: $Enums.ItemType | null
   }
@@ -4292,7 +5331,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     description: string | null
-    ownerId: number | null
+    profileId: number | null
     shelfId: number | null
     itemType: $Enums.ItemType | null
   }
@@ -4301,7 +5340,7 @@ export namespace Prisma {
     id: number
     name: number
     description: number
-    ownerId: number
+    profileId: number
     shelfId: number
     itemType: number
     _all: number
@@ -4310,13 +5349,13 @@ export namespace Prisma {
 
   export type ItemAvgAggregateInputType = {
     id?: true
-    ownerId?: true
+    profileId?: true
     shelfId?: true
   }
 
   export type ItemSumAggregateInputType = {
     id?: true
-    ownerId?: true
+    profileId?: true
     shelfId?: true
   }
 
@@ -4324,7 +5363,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
+    profileId?: true
     shelfId?: true
     itemType?: true
   }
@@ -4333,7 +5372,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
+    profileId?: true
     shelfId?: true
     itemType?: true
   }
@@ -4342,7 +5381,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    ownerId?: true
+    profileId?: true
     shelfId?: true
     itemType?: true
     _all?: true
@@ -4438,7 +5477,7 @@ export namespace Prisma {
     id: number
     name: string
     description: string | null
-    ownerId: number
+    profileId: number
     shelfId: number
     itemType: $Enums.ItemType
     _count: ItemCountAggregateOutputType | null
@@ -4466,10 +5505,10 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    ownerId?: boolean
+    profileId?: boolean
     shelfId?: boolean
     itemType?: boolean
-    owner?: boolean | ProfileDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     shelf?: boolean | ShelfDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["item"]>
 
@@ -4479,28 +5518,28 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    ownerId?: boolean
+    profileId?: boolean
     shelfId?: boolean
     itemType?: boolean
   }
 
-  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "ownerId" | "shelfId" | "itemType", ExtArgs["result"]["item"]>
+  export type ItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "profileId" | "shelfId" | "itemType", ExtArgs["result"]["item"]>
   export type ItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    owner?: boolean | ProfileDefaultArgs<ExtArgs>
+    profile?: boolean | ProfileDefaultArgs<ExtArgs>
     shelf?: boolean | ShelfDefaultArgs<ExtArgs>
   }
 
   export type $ItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Item"
     objects: {
-      owner: Prisma.$ProfilePayload<ExtArgs>
+      profile: Prisma.$ProfilePayload<ExtArgs>
       shelf: Prisma.$ShelfPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       description: string | null
-      ownerId: number
+      profileId: number
       shelfId: number
       itemType: $Enums.ItemType
     }, ExtArgs["result"]["item"]>
@@ -4843,7 +5882,7 @@ export namespace Prisma {
    */
   export interface Prisma__ItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    owner<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    profile<T extends ProfileDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProfileDefaultArgs<ExtArgs>>): Prisma__ProfileClient<$Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     shelf<T extends ShelfDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ShelfDefaultArgs<ExtArgs>>): Prisma__ShelfClient<$Result.GetResult<Prisma.$ShelfPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4877,7 +5916,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Item", 'Int'>
     readonly name: FieldRef<"Item", 'String'>
     readonly description: FieldRef<"Item", 'String'>
-    readonly ownerId: FieldRef<"Item", 'Int'>
+    readonly profileId: FieldRef<"Item", 'Int'>
     readonly shelfId: FieldRef<"Item", 'Int'>
     readonly itemType: FieldRef<"Item", 'ItemType'>
   }
@@ -5267,18 +6306,25 @@ export namespace Prisma {
   export const RoomScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    description: 'description',
-    ownerId: 'ownerId'
+    description: 'description'
   };
 
   export type RoomScalarFieldEnum = (typeof RoomScalarFieldEnum)[keyof typeof RoomScalarFieldEnum]
+
+
+  export const ProfilesOfRoomsScalarFieldEnum: {
+    profileId: 'profileId',
+    roomId: 'roomId'
+  };
+
+  export type ProfilesOfRoomsScalarFieldEnum = (typeof ProfilesOfRoomsScalarFieldEnum)[keyof typeof ProfilesOfRoomsScalarFieldEnum]
 
 
   export const ShelfScalarFieldEnum: {
     id: 'id',
     name: 'name',
     description: 'description',
-    ownerId: 'ownerId',
+    profileId: 'profileId',
     roomId: 'roomId'
   };
 
@@ -5289,7 +6335,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
-    ownerId: 'ownerId',
+    profileId: 'profileId',
     shelfId: 'shelfId',
     itemType: 'itemType'
   };
@@ -5388,18 +6434,18 @@ export namespace Prisma {
     id?: IntFilter<"Profile"> | number
     name?: StringFilter<"Profile"> | string
     surname?: StringFilter<"Profile"> | string
-    rooms?: RoomListRelationFilter
     shelfs?: ShelfListRelationFilter
     items?: ItemListRelationFilter
+    profilesOfRooms?: ProfilesOfRoomsListRelationFilter
   }
 
   export type ProfileOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     surname?: SortOrder
-    rooms?: RoomOrderByRelationAggregateInput
     shelfs?: ShelfOrderByRelationAggregateInput
     items?: ItemOrderByRelationAggregateInput
+    profilesOfRooms?: ProfilesOfRoomsOrderByRelationAggregateInput
     _relevance?: ProfileOrderByRelevanceInput
   }
 
@@ -5410,9 +6456,9 @@ export namespace Prisma {
     NOT?: ProfileWhereInput | ProfileWhereInput[]
     name?: StringFilter<"Profile"> | string
     surname?: StringFilter<"Profile"> | string
-    rooms?: RoomListRelationFilter
     shelfs?: ShelfListRelationFilter
     items?: ItemListRelationFilter
+    profilesOfRooms?: ProfilesOfRoomsListRelationFilter
   }, "id">
 
   export type ProfileOrderByWithAggregationInput = {
@@ -5442,18 +6488,16 @@ export namespace Prisma {
     id?: IntFilter<"Room"> | number
     name?: StringFilter<"Room"> | string
     description?: StringNullableFilter<"Room"> | string | null
-    ownerId?: IntFilter<"Room"> | number
-    owner?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     shelfs?: ShelfListRelationFilter
+    profilesOfRooms?: ProfilesOfRoomsListRelationFilter
   }
 
   export type RoomOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    ownerId?: SortOrder
-    owner?: ProfileOrderByWithRelationInput
     shelfs?: ShelfOrderByRelationAggregateInput
+    profilesOfRooms?: ProfilesOfRoomsOrderByRelationAggregateInput
     _relevance?: RoomOrderByRelevanceInput
   }
 
@@ -5464,16 +6508,14 @@ export namespace Prisma {
     NOT?: RoomWhereInput | RoomWhereInput[]
     name?: StringFilter<"Room"> | string
     description?: StringNullableFilter<"Room"> | string | null
-    ownerId?: IntFilter<"Room"> | number
-    owner?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     shelfs?: ShelfListRelationFilter
+    profilesOfRooms?: ProfilesOfRoomsListRelationFilter
   }, "id">
 
   export type RoomOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    ownerId?: SortOrder
     _count?: RoomCountOrderByAggregateInput
     _avg?: RoomAvgOrderByAggregateInput
     _max?: RoomMaxOrderByAggregateInput
@@ -5488,7 +6530,52 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Room"> | number
     name?: StringWithAggregatesFilter<"Room"> | string
     description?: StringNullableWithAggregatesFilter<"Room"> | string | null
-    ownerId?: IntWithAggregatesFilter<"Room"> | number
+  }
+
+  export type ProfilesOfRoomsWhereInput = {
+    AND?: ProfilesOfRoomsWhereInput | ProfilesOfRoomsWhereInput[]
+    OR?: ProfilesOfRoomsWhereInput[]
+    NOT?: ProfilesOfRoomsWhereInput | ProfilesOfRoomsWhereInput[]
+    profileId?: IntFilter<"ProfilesOfRooms"> | number
+    roomId?: IntFilter<"ProfilesOfRooms"> | number
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+  }
+
+  export type ProfilesOfRoomsOrderByWithRelationInput = {
+    profileId?: SortOrder
+    roomId?: SortOrder
+    profile?: ProfileOrderByWithRelationInput
+    room?: RoomOrderByWithRelationInput
+  }
+
+  export type ProfilesOfRoomsWhereUniqueInput = Prisma.AtLeast<{
+    profileId_roomId?: ProfilesOfRoomsProfileIdRoomIdCompoundUniqueInput
+    AND?: ProfilesOfRoomsWhereInput | ProfilesOfRoomsWhereInput[]
+    OR?: ProfilesOfRoomsWhereInput[]
+    NOT?: ProfilesOfRoomsWhereInput | ProfilesOfRoomsWhereInput[]
+    profileId?: IntFilter<"ProfilesOfRooms"> | number
+    roomId?: IntFilter<"ProfilesOfRooms"> | number
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
+  }, "profileId_roomId">
+
+  export type ProfilesOfRoomsOrderByWithAggregationInput = {
+    profileId?: SortOrder
+    roomId?: SortOrder
+    _count?: ProfilesOfRoomsCountOrderByAggregateInput
+    _avg?: ProfilesOfRoomsAvgOrderByAggregateInput
+    _max?: ProfilesOfRoomsMaxOrderByAggregateInput
+    _min?: ProfilesOfRoomsMinOrderByAggregateInput
+    _sum?: ProfilesOfRoomsSumOrderByAggregateInput
+  }
+
+  export type ProfilesOfRoomsScalarWhereWithAggregatesInput = {
+    AND?: ProfilesOfRoomsScalarWhereWithAggregatesInput | ProfilesOfRoomsScalarWhereWithAggregatesInput[]
+    OR?: ProfilesOfRoomsScalarWhereWithAggregatesInput[]
+    NOT?: ProfilesOfRoomsScalarWhereWithAggregatesInput | ProfilesOfRoomsScalarWhereWithAggregatesInput[]
+    profileId?: IntWithAggregatesFilter<"ProfilesOfRooms"> | number
+    roomId?: IntWithAggregatesFilter<"ProfilesOfRooms"> | number
   }
 
   export type ShelfWhereInput = {
@@ -5498,9 +6585,9 @@ export namespace Prisma {
     id?: IntFilter<"Shelf"> | number
     name?: StringFilter<"Shelf"> | string
     description?: StringNullableFilter<"Shelf"> | string | null
-    ownerId?: IntFilter<"Shelf"> | number
+    profileId?: IntFilter<"Shelf"> | number
     roomId?: IntFilter<"Shelf"> | number
-    owner?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
     items?: ItemListRelationFilter
   }
@@ -5509,9 +6596,9 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     roomId?: SortOrder
-    owner?: ProfileOrderByWithRelationInput
+    profile?: ProfileOrderByWithRelationInput
     room?: RoomOrderByWithRelationInput
     items?: ItemOrderByRelationAggregateInput
     _relevance?: ShelfOrderByRelevanceInput
@@ -5524,9 +6611,9 @@ export namespace Prisma {
     NOT?: ShelfWhereInput | ShelfWhereInput[]
     name?: StringFilter<"Shelf"> | string
     description?: StringNullableFilter<"Shelf"> | string | null
-    ownerId?: IntFilter<"Shelf"> | number
+    profileId?: IntFilter<"Shelf"> | number
     roomId?: IntFilter<"Shelf"> | number
-    owner?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     room?: XOR<RoomScalarRelationFilter, RoomWhereInput>
     items?: ItemListRelationFilter
   }, "id">
@@ -5535,7 +6622,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     roomId?: SortOrder
     _count?: ShelfCountOrderByAggregateInput
     _avg?: ShelfAvgOrderByAggregateInput
@@ -5551,7 +6638,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Shelf"> | number
     name?: StringWithAggregatesFilter<"Shelf"> | string
     description?: StringNullableWithAggregatesFilter<"Shelf"> | string | null
-    ownerId?: IntWithAggregatesFilter<"Shelf"> | number
+    profileId?: IntWithAggregatesFilter<"Shelf"> | number
     roomId?: IntWithAggregatesFilter<"Shelf"> | number
   }
 
@@ -5562,10 +6649,10 @@ export namespace Prisma {
     id?: IntFilter<"Item"> | number
     name?: StringFilter<"Item"> | string
     description?: StringNullableFilter<"Item"> | string | null
-    ownerId?: IntFilter<"Item"> | number
+    profileId?: IntFilter<"Item"> | number
     shelfId?: IntFilter<"Item"> | number
     itemType?: EnumItemTypeFilter<"Item"> | $Enums.ItemType
-    owner?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     shelf?: XOR<ShelfScalarRelationFilter, ShelfWhereInput>
   }
 
@@ -5573,10 +6660,10 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     shelfId?: SortOrder
     itemType?: SortOrder
-    owner?: ProfileOrderByWithRelationInput
+    profile?: ProfileOrderByWithRelationInput
     shelf?: ShelfOrderByWithRelationInput
     _relevance?: ItemOrderByRelevanceInput
   }
@@ -5588,10 +6675,10 @@ export namespace Prisma {
     NOT?: ItemWhereInput | ItemWhereInput[]
     name?: StringFilter<"Item"> | string
     description?: StringNullableFilter<"Item"> | string | null
-    ownerId?: IntFilter<"Item"> | number
+    profileId?: IntFilter<"Item"> | number
     shelfId?: IntFilter<"Item"> | number
     itemType?: EnumItemTypeFilter<"Item"> | $Enums.ItemType
-    owner?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
+    profile?: XOR<ProfileScalarRelationFilter, ProfileWhereInput>
     shelf?: XOR<ShelfScalarRelationFilter, ShelfWhereInput>
   }, "id">
 
@@ -5599,7 +6686,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     shelfId?: SortOrder
     itemType?: SortOrder
     _count?: ItemCountOrderByAggregateInput
@@ -5616,7 +6703,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Item"> | number
     name?: StringWithAggregatesFilter<"Item"> | string
     description?: StringNullableWithAggregatesFilter<"Item"> | string | null
-    ownerId?: IntWithAggregatesFilter<"Item"> | number
+    profileId?: IntWithAggregatesFilter<"Item"> | number
     shelfId?: IntWithAggregatesFilter<"Item"> | number
     itemType?: EnumItemTypeWithAggregatesFilter<"Item"> | $Enums.ItemType
   }
@@ -5624,35 +6711,35 @@ export namespace Prisma {
   export type ProfileCreateInput = {
     name: string
     surname: string
-    rooms?: RoomCreateNestedManyWithoutOwnerInput
-    shelfs?: ShelfCreateNestedManyWithoutOwnerInput
-    items?: ItemCreateNestedManyWithoutOwnerInput
+    shelfs?: ShelfCreateNestedManyWithoutProfileInput
+    items?: ItemCreateNestedManyWithoutProfileInput
+    profilesOfRooms?: ProfilesOfRoomsCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateInput = {
     id?: number
     name: string
     surname: string
-    rooms?: RoomUncheckedCreateNestedManyWithoutOwnerInput
-    shelfs?: ShelfUncheckedCreateNestedManyWithoutOwnerInput
-    items?: ItemUncheckedCreateNestedManyWithoutOwnerInput
+    shelfs?: ShelfUncheckedCreateNestedManyWithoutProfileInput
+    items?: ItemUncheckedCreateNestedManyWithoutProfileInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     surname?: StringFieldUpdateOperationsInput | string
-    rooms?: RoomUpdateManyWithoutOwnerNestedInput
-    shelfs?: ShelfUpdateManyWithoutOwnerNestedInput
-    items?: ItemUpdateManyWithoutOwnerNestedInput
+    shelfs?: ShelfUpdateManyWithoutProfileNestedInput
+    items?: ItemUpdateManyWithoutProfileNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     surname?: StringFieldUpdateOperationsInput | string
-    rooms?: RoomUncheckedUpdateManyWithoutOwnerNestedInput
-    shelfs?: ShelfUncheckedUpdateManyWithoutOwnerNestedInput
-    items?: ItemUncheckedUpdateManyWithoutOwnerNestedInput
+    shelfs?: ShelfUncheckedUpdateManyWithoutProfileNestedInput
+    items?: ItemUncheckedUpdateManyWithoutProfileNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileCreateManyInput = {
@@ -5675,38 +6762,37 @@ export namespace Prisma {
   export type RoomCreateInput = {
     name: string
     description?: string | null
-    owner: ProfileCreateNestedOneWithoutRoomsInput
     shelfs?: ShelfCreateNestedManyWithoutRoomInput
+    profilesOfRooms?: ProfilesOfRoomsCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUncheckedCreateInput = {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
     shelfs?: ShelfUncheckedCreateNestedManyWithoutRoomInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    owner?: ProfileUpdateOneRequiredWithoutRoomsNestedInput
     shelfs?: ShelfUpdateManyWithoutRoomNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUpdateManyWithoutRoomNestedInput
   }
 
   export type RoomUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
     shelfs?: ShelfUncheckedUpdateManyWithoutRoomNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedUpdateManyWithoutRoomNestedInput
   }
 
   export type RoomCreateManyInput = {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
   }
 
   export type RoomUpdateManyMutationInput = {
@@ -5718,13 +6804,46 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProfilesOfRoomsCreateInput = {
+    profile: ProfileCreateNestedOneWithoutProfilesOfRoomsInput
+    room: RoomCreateNestedOneWithoutProfilesOfRoomsInput
+  }
+
+  export type ProfilesOfRoomsUncheckedCreateInput = {
+    profileId: number
+    roomId: number
+  }
+
+  export type ProfilesOfRoomsUpdateInput = {
+    profile?: ProfileUpdateOneRequiredWithoutProfilesOfRoomsNestedInput
+    room?: RoomUpdateOneRequiredWithoutProfilesOfRoomsNestedInput
+  }
+
+  export type ProfilesOfRoomsUncheckedUpdateInput = {
+    profileId?: IntFieldUpdateOperationsInput | number
+    roomId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProfilesOfRoomsCreateManyInput = {
+    profileId: number
+    roomId: number
+  }
+
+  export type ProfilesOfRoomsUpdateManyMutationInput = {
+
+  }
+
+  export type ProfilesOfRoomsUncheckedUpdateManyInput = {
+    profileId?: IntFieldUpdateOperationsInput | number
+    roomId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ShelfCreateInput = {
     name: string
     description?: string | null
-    owner: ProfileCreateNestedOneWithoutShelfsInput
+    profile: ProfileCreateNestedOneWithoutShelfsInput
     room: RoomCreateNestedOneWithoutShelfsInput
     items?: ItemCreateNestedManyWithoutShelfInput
   }
@@ -5733,7 +6852,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     roomId: number
     items?: ItemUncheckedCreateNestedManyWithoutShelfInput
   }
@@ -5741,7 +6860,7 @@ export namespace Prisma {
   export type ShelfUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    owner?: ProfileUpdateOneRequiredWithoutShelfsNestedInput
+    profile?: ProfileUpdateOneRequiredWithoutShelfsNestedInput
     room?: RoomUpdateOneRequiredWithoutShelfsNestedInput
     items?: ItemUpdateManyWithoutShelfNestedInput
   }
@@ -5750,7 +6869,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     roomId?: IntFieldUpdateOperationsInput | number
     items?: ItemUncheckedUpdateManyWithoutShelfNestedInput
   }
@@ -5759,7 +6878,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     roomId: number
   }
 
@@ -5772,7 +6891,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     roomId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -5780,7 +6899,7 @@ export namespace Prisma {
     name: string
     description?: string | null
     itemType?: $Enums.ItemType
-    owner: ProfileCreateNestedOneWithoutItemsInput
+    profile: ProfileCreateNestedOneWithoutItemsInput
     shelf: ShelfCreateNestedOneWithoutItemsInput
   }
 
@@ -5788,7 +6907,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     shelfId: number
     itemType?: $Enums.ItemType
   }
@@ -5797,7 +6916,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
-    owner?: ProfileUpdateOneRequiredWithoutItemsNestedInput
+    profile?: ProfileUpdateOneRequiredWithoutItemsNestedInput
     shelf?: ShelfUpdateOneRequiredWithoutItemsNestedInput
   }
 
@@ -5805,7 +6924,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
   }
@@ -5814,7 +6933,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     shelfId: number
     itemType?: $Enums.ItemType
   }
@@ -5829,7 +6948,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     shelfId?: IntFieldUpdateOperationsInput | number
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
   }
@@ -5860,12 +6979,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type RoomListRelationFilter = {
-    every?: RoomWhereInput
-    some?: RoomWhereInput
-    none?: RoomWhereInput
-  }
-
   export type ShelfListRelationFilter = {
     every?: ShelfWhereInput
     some?: ShelfWhereInput
@@ -5878,8 +6991,10 @@ export namespace Prisma {
     none?: ItemWhereInput
   }
 
-  export type RoomOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type ProfilesOfRoomsListRelationFilter = {
+    every?: ProfilesOfRoomsWhereInput
+    some?: ProfilesOfRoomsWhereInput
+    none?: ProfilesOfRoomsWhereInput
   }
 
   export type ShelfOrderByRelationAggregateInput = {
@@ -5887,6 +7002,10 @@ export namespace Prisma {
   }
 
   export type ItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProfilesOfRoomsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -5971,11 +7090,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type ProfileScalarRelationFilter = {
-    is?: ProfileWhereInput
-    isNot?: ProfileWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -5991,31 +7105,26 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
   }
 
   export type RoomAvgOrderByAggregateInput = {
     id?: SortOrder
-    ownerId?: SortOrder
   }
 
   export type RoomMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
   }
 
   export type RoomMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
   }
 
   export type RoomSumOrderByAggregateInput = {
     id?: SortOrder
-    ownerId?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6036,9 +7145,44 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type ProfileScalarRelationFilter = {
+    is?: ProfileWhereInput
+    isNot?: ProfileWhereInput
+  }
+
   export type RoomScalarRelationFilter = {
     is?: RoomWhereInput
     isNot?: RoomWhereInput
+  }
+
+  export type ProfilesOfRoomsProfileIdRoomIdCompoundUniqueInput = {
+    profileId: number
+    roomId: number
+  }
+
+  export type ProfilesOfRoomsCountOrderByAggregateInput = {
+    profileId?: SortOrder
+    roomId?: SortOrder
+  }
+
+  export type ProfilesOfRoomsAvgOrderByAggregateInput = {
+    profileId?: SortOrder
+    roomId?: SortOrder
+  }
+
+  export type ProfilesOfRoomsMaxOrderByAggregateInput = {
+    profileId?: SortOrder
+    roomId?: SortOrder
+  }
+
+  export type ProfilesOfRoomsMinOrderByAggregateInput = {
+    profileId?: SortOrder
+    roomId?: SortOrder
+  }
+
+  export type ProfilesOfRoomsSumOrderByAggregateInput = {
+    profileId?: SortOrder
+    roomId?: SortOrder
   }
 
   export type ShelfOrderByRelevanceInput = {
@@ -6051,13 +7195,13 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     roomId?: SortOrder
   }
 
   export type ShelfAvgOrderByAggregateInput = {
     id?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     roomId?: SortOrder
   }
 
@@ -6065,7 +7209,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     roomId?: SortOrder
   }
 
@@ -6073,13 +7217,13 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     roomId?: SortOrder
   }
 
   export type ShelfSumOrderByAggregateInput = {
     id?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     roomId?: SortOrder
   }
 
@@ -6105,14 +7249,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     shelfId?: SortOrder
     itemType?: SortOrder
   }
 
   export type ItemAvgOrderByAggregateInput = {
     id?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     shelfId?: SortOrder
   }
 
@@ -6120,7 +7264,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     shelfId?: SortOrder
     itemType?: SortOrder
   }
@@ -6129,14 +7273,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     shelfId?: SortOrder
     itemType?: SortOrder
   }
 
   export type ItemSumOrderByAggregateInput = {
     id?: SortOrder
-    ownerId?: SortOrder
+    profileId?: SortOrder
     shelfId?: SortOrder
   }
 
@@ -6150,92 +7294,92 @@ export namespace Prisma {
     _max?: NestedEnumItemTypeFilter<$PrismaModel>
   }
 
-  export type RoomCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<RoomCreateWithoutOwnerInput, RoomUncheckedCreateWithoutOwnerInput> | RoomCreateWithoutOwnerInput[] | RoomUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutOwnerInput | RoomCreateOrConnectWithoutOwnerInput[]
-    createMany?: RoomCreateManyOwnerInputEnvelope
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-  }
-
-  export type ShelfCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
-    createMany?: ShelfCreateManyOwnerInputEnvelope
+  export type ShelfCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ShelfCreateWithoutProfileInput, ShelfUncheckedCreateWithoutProfileInput> | ShelfCreateWithoutProfileInput[] | ShelfUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutProfileInput | ShelfCreateOrConnectWithoutProfileInput[]
+    createMany?: ShelfCreateManyProfileInputEnvelope
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
-  export type ItemCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<ItemCreateWithoutOwnerInput, ItemUncheckedCreateWithoutOwnerInput> | ItemCreateWithoutOwnerInput[] | ItemUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ItemCreateOrConnectWithoutOwnerInput | ItemCreateOrConnectWithoutOwnerInput[]
-    createMany?: ItemCreateManyOwnerInputEnvelope
+  export type ItemCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ItemCreateWithoutProfileInput, ItemUncheckedCreateWithoutProfileInput> | ItemCreateWithoutProfileInput[] | ItemUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutProfileInput | ItemCreateOrConnectWithoutProfileInput[]
+    createMany?: ItemCreateManyProfileInputEnvelope
     connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
   }
 
-  export type RoomUncheckedCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<RoomCreateWithoutOwnerInput, RoomUncheckedCreateWithoutOwnerInput> | RoomCreateWithoutOwnerInput[] | RoomUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutOwnerInput | RoomCreateOrConnectWithoutOwnerInput[]
-    createMany?: RoomCreateManyOwnerInputEnvelope
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
+  export type ProfilesOfRoomsCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutProfileInput, ProfilesOfRoomsUncheckedCreateWithoutProfileInput> | ProfilesOfRoomsCreateWithoutProfileInput[] | ProfilesOfRoomsUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutProfileInput | ProfilesOfRoomsCreateOrConnectWithoutProfileInput[]
+    createMany?: ProfilesOfRoomsCreateManyProfileInputEnvelope
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
   }
 
-  export type ShelfUncheckedCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
-    createMany?: ShelfCreateManyOwnerInputEnvelope
+  export type ShelfUncheckedCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ShelfCreateWithoutProfileInput, ShelfUncheckedCreateWithoutProfileInput> | ShelfCreateWithoutProfileInput[] | ShelfUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutProfileInput | ShelfCreateOrConnectWithoutProfileInput[]
+    createMany?: ShelfCreateManyProfileInputEnvelope
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
-  export type ItemUncheckedCreateNestedManyWithoutOwnerInput = {
-    create?: XOR<ItemCreateWithoutOwnerInput, ItemUncheckedCreateWithoutOwnerInput> | ItemCreateWithoutOwnerInput[] | ItemUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ItemCreateOrConnectWithoutOwnerInput | ItemCreateOrConnectWithoutOwnerInput[]
-    createMany?: ItemCreateManyOwnerInputEnvelope
+  export type ItemUncheckedCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ItemCreateWithoutProfileInput, ItemUncheckedCreateWithoutProfileInput> | ItemCreateWithoutProfileInput[] | ItemUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutProfileInput | ItemCreateOrConnectWithoutProfileInput[]
+    createMany?: ItemCreateManyProfileInputEnvelope
     connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
+  }
+
+  export type ProfilesOfRoomsUncheckedCreateNestedManyWithoutProfileInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutProfileInput, ProfilesOfRoomsUncheckedCreateWithoutProfileInput> | ProfilesOfRoomsCreateWithoutProfileInput[] | ProfilesOfRoomsUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutProfileInput | ProfilesOfRoomsCreateOrConnectWithoutProfileInput[]
+    createMany?: ProfilesOfRoomsCreateManyProfileInputEnvelope
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type RoomUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<RoomCreateWithoutOwnerInput, RoomUncheckedCreateWithoutOwnerInput> | RoomCreateWithoutOwnerInput[] | RoomUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutOwnerInput | RoomCreateOrConnectWithoutOwnerInput[]
-    upsert?: RoomUpsertWithWhereUniqueWithoutOwnerInput | RoomUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: RoomCreateManyOwnerInputEnvelope
-    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    update?: RoomUpdateWithWhereUniqueWithoutOwnerInput | RoomUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: RoomUpdateManyWithWhereWithoutOwnerInput | RoomUpdateManyWithWhereWithoutOwnerInput[]
-    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
-  }
-
-  export type ShelfUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
-    upsert?: ShelfUpsertWithWhereUniqueWithoutOwnerInput | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: ShelfCreateManyOwnerInputEnvelope
+  export type ShelfUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ShelfCreateWithoutProfileInput, ShelfUncheckedCreateWithoutProfileInput> | ShelfCreateWithoutProfileInput[] | ShelfUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutProfileInput | ShelfCreateOrConnectWithoutProfileInput[]
+    upsert?: ShelfUpsertWithWhereUniqueWithoutProfileInput | ShelfUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ShelfCreateManyProfileInputEnvelope
     set?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     disconnect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     delete?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
-    update?: ShelfUpdateWithWhereUniqueWithoutOwnerInput | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: ShelfUpdateManyWithWhereWithoutOwnerInput | ShelfUpdateManyWithWhereWithoutOwnerInput[]
+    update?: ShelfUpdateWithWhereUniqueWithoutProfileInput | ShelfUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ShelfUpdateManyWithWhereWithoutProfileInput | ShelfUpdateManyWithWhereWithoutProfileInput[]
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
   }
 
-  export type ItemUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<ItemCreateWithoutOwnerInput, ItemUncheckedCreateWithoutOwnerInput> | ItemCreateWithoutOwnerInput[] | ItemUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ItemCreateOrConnectWithoutOwnerInput | ItemCreateOrConnectWithoutOwnerInput[]
-    upsert?: ItemUpsertWithWhereUniqueWithoutOwnerInput | ItemUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: ItemCreateManyOwnerInputEnvelope
+  export type ItemUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ItemCreateWithoutProfileInput, ItemUncheckedCreateWithoutProfileInput> | ItemCreateWithoutProfileInput[] | ItemUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutProfileInput | ItemCreateOrConnectWithoutProfileInput[]
+    upsert?: ItemUpsertWithWhereUniqueWithoutProfileInput | ItemUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ItemCreateManyProfileInputEnvelope
     set?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
     disconnect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
     delete?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
     connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
-    update?: ItemUpdateWithWhereUniqueWithoutOwnerInput | ItemUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: ItemUpdateManyWithWhereWithoutOwnerInput | ItemUpdateManyWithWhereWithoutOwnerInput[]
+    update?: ItemUpdateWithWhereUniqueWithoutProfileInput | ItemUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ItemUpdateManyWithWhereWithoutProfileInput | ItemUpdateManyWithWhereWithoutProfileInput[]
     deleteMany?: ItemScalarWhereInput | ItemScalarWhereInput[]
+  }
+
+  export type ProfilesOfRoomsUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutProfileInput, ProfilesOfRoomsUncheckedCreateWithoutProfileInput> | ProfilesOfRoomsCreateWithoutProfileInput[] | ProfilesOfRoomsUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutProfileInput | ProfilesOfRoomsCreateOrConnectWithoutProfileInput[]
+    upsert?: ProfilesOfRoomsUpsertWithWhereUniqueWithoutProfileInput | ProfilesOfRoomsUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ProfilesOfRoomsCreateManyProfileInputEnvelope
+    set?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    disconnect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    delete?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    update?: ProfilesOfRoomsUpdateWithWhereUniqueWithoutProfileInput | ProfilesOfRoomsUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ProfilesOfRoomsUpdateManyWithWhereWithoutProfileInput | ProfilesOfRoomsUpdateManyWithWhereWithoutProfileInput[]
+    deleteMany?: ProfilesOfRoomsScalarWhereInput | ProfilesOfRoomsScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -6246,52 +7390,46 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type RoomUncheckedUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<RoomCreateWithoutOwnerInput, RoomUncheckedCreateWithoutOwnerInput> | RoomCreateWithoutOwnerInput[] | RoomUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: RoomCreateOrConnectWithoutOwnerInput | RoomCreateOrConnectWithoutOwnerInput[]
-    upsert?: RoomUpsertWithWhereUniqueWithoutOwnerInput | RoomUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: RoomCreateManyOwnerInputEnvelope
-    set?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    disconnect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    delete?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    connect?: RoomWhereUniqueInput | RoomWhereUniqueInput[]
-    update?: RoomUpdateWithWhereUniqueWithoutOwnerInput | RoomUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: RoomUpdateManyWithWhereWithoutOwnerInput | RoomUpdateManyWithWhereWithoutOwnerInput[]
-    deleteMany?: RoomScalarWhereInput | RoomScalarWhereInput[]
-  }
-
-  export type ShelfUncheckedUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput> | ShelfCreateWithoutOwnerInput[] | ShelfUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ShelfCreateOrConnectWithoutOwnerInput | ShelfCreateOrConnectWithoutOwnerInput[]
-    upsert?: ShelfUpsertWithWhereUniqueWithoutOwnerInput | ShelfUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: ShelfCreateManyOwnerInputEnvelope
+  export type ShelfUncheckedUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ShelfCreateWithoutProfileInput, ShelfUncheckedCreateWithoutProfileInput> | ShelfCreateWithoutProfileInput[] | ShelfUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ShelfCreateOrConnectWithoutProfileInput | ShelfCreateOrConnectWithoutProfileInput[]
+    upsert?: ShelfUpsertWithWhereUniqueWithoutProfileInput | ShelfUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ShelfCreateManyProfileInputEnvelope
     set?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     disconnect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     delete?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
-    update?: ShelfUpdateWithWhereUniqueWithoutOwnerInput | ShelfUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: ShelfUpdateManyWithWhereWithoutOwnerInput | ShelfUpdateManyWithWhereWithoutOwnerInput[]
+    update?: ShelfUpdateWithWhereUniqueWithoutProfileInput | ShelfUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ShelfUpdateManyWithWhereWithoutProfileInput | ShelfUpdateManyWithWhereWithoutProfileInput[]
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
   }
 
-  export type ItemUncheckedUpdateManyWithoutOwnerNestedInput = {
-    create?: XOR<ItemCreateWithoutOwnerInput, ItemUncheckedCreateWithoutOwnerInput> | ItemCreateWithoutOwnerInput[] | ItemUncheckedCreateWithoutOwnerInput[]
-    connectOrCreate?: ItemCreateOrConnectWithoutOwnerInput | ItemCreateOrConnectWithoutOwnerInput[]
-    upsert?: ItemUpsertWithWhereUniqueWithoutOwnerInput | ItemUpsertWithWhereUniqueWithoutOwnerInput[]
-    createMany?: ItemCreateManyOwnerInputEnvelope
+  export type ItemUncheckedUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ItemCreateWithoutProfileInput, ItemUncheckedCreateWithoutProfileInput> | ItemCreateWithoutProfileInput[] | ItemUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ItemCreateOrConnectWithoutProfileInput | ItemCreateOrConnectWithoutProfileInput[]
+    upsert?: ItemUpsertWithWhereUniqueWithoutProfileInput | ItemUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ItemCreateManyProfileInputEnvelope
     set?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
     disconnect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
     delete?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
     connect?: ItemWhereUniqueInput | ItemWhereUniqueInput[]
-    update?: ItemUpdateWithWhereUniqueWithoutOwnerInput | ItemUpdateWithWhereUniqueWithoutOwnerInput[]
-    updateMany?: ItemUpdateManyWithWhereWithoutOwnerInput | ItemUpdateManyWithWhereWithoutOwnerInput[]
+    update?: ItemUpdateWithWhereUniqueWithoutProfileInput | ItemUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ItemUpdateManyWithWhereWithoutProfileInput | ItemUpdateManyWithWhereWithoutProfileInput[]
     deleteMany?: ItemScalarWhereInput | ItemScalarWhereInput[]
   }
 
-  export type ProfileCreateNestedOneWithoutRoomsInput = {
-    create?: XOR<ProfileCreateWithoutRoomsInput, ProfileUncheckedCreateWithoutRoomsInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutRoomsInput
-    connect?: ProfileWhereUniqueInput
+  export type ProfilesOfRoomsUncheckedUpdateManyWithoutProfileNestedInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutProfileInput, ProfilesOfRoomsUncheckedCreateWithoutProfileInput> | ProfilesOfRoomsCreateWithoutProfileInput[] | ProfilesOfRoomsUncheckedCreateWithoutProfileInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutProfileInput | ProfilesOfRoomsCreateOrConnectWithoutProfileInput[]
+    upsert?: ProfilesOfRoomsUpsertWithWhereUniqueWithoutProfileInput | ProfilesOfRoomsUpsertWithWhereUniqueWithoutProfileInput[]
+    createMany?: ProfilesOfRoomsCreateManyProfileInputEnvelope
+    set?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    disconnect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    delete?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    update?: ProfilesOfRoomsUpdateWithWhereUniqueWithoutProfileInput | ProfilesOfRoomsUpdateWithWhereUniqueWithoutProfileInput[]
+    updateMany?: ProfilesOfRoomsUpdateManyWithWhereWithoutProfileInput | ProfilesOfRoomsUpdateManyWithWhereWithoutProfileInput[]
+    deleteMany?: ProfilesOfRoomsScalarWhereInput | ProfilesOfRoomsScalarWhereInput[]
   }
 
   export type ShelfCreateNestedManyWithoutRoomInput = {
@@ -6301,6 +7439,13 @@ export namespace Prisma {
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
+  export type ProfilesOfRoomsCreateNestedManyWithoutRoomInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutRoomInput, ProfilesOfRoomsUncheckedCreateWithoutRoomInput> | ProfilesOfRoomsCreateWithoutRoomInput[] | ProfilesOfRoomsUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutRoomInput | ProfilesOfRoomsCreateOrConnectWithoutRoomInput[]
+    createMany?: ProfilesOfRoomsCreateManyRoomInputEnvelope
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+  }
+
   export type ShelfUncheckedCreateNestedManyWithoutRoomInput = {
     create?: XOR<ShelfCreateWithoutRoomInput, ShelfUncheckedCreateWithoutRoomInput> | ShelfCreateWithoutRoomInput[] | ShelfUncheckedCreateWithoutRoomInput[]
     connectOrCreate?: ShelfCreateOrConnectWithoutRoomInput | ShelfCreateOrConnectWithoutRoomInput[]
@@ -6308,16 +7453,15 @@ export namespace Prisma {
     connect?: ShelfWhereUniqueInput | ShelfWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type ProfilesOfRoomsUncheckedCreateNestedManyWithoutRoomInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutRoomInput, ProfilesOfRoomsUncheckedCreateWithoutRoomInput> | ProfilesOfRoomsCreateWithoutRoomInput[] | ProfilesOfRoomsUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutRoomInput | ProfilesOfRoomsCreateOrConnectWithoutRoomInput[]
+    createMany?: ProfilesOfRoomsCreateManyRoomInputEnvelope
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
   }
 
-  export type ProfileUpdateOneRequiredWithoutRoomsNestedInput = {
-    create?: XOR<ProfileCreateWithoutRoomsInput, ProfileUncheckedCreateWithoutRoomsInput>
-    connectOrCreate?: ProfileCreateOrConnectWithoutRoomsInput
-    upsert?: ProfileUpsertWithoutRoomsInput
-    connect?: ProfileWhereUniqueInput
-    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutRoomsInput, ProfileUpdateWithoutRoomsInput>, ProfileUncheckedUpdateWithoutRoomsInput>
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type ShelfUpdateManyWithoutRoomNestedInput = {
@@ -6334,6 +7478,20 @@ export namespace Prisma {
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
   }
 
+  export type ProfilesOfRoomsUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutRoomInput, ProfilesOfRoomsUncheckedCreateWithoutRoomInput> | ProfilesOfRoomsCreateWithoutRoomInput[] | ProfilesOfRoomsUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutRoomInput | ProfilesOfRoomsCreateOrConnectWithoutRoomInput[]
+    upsert?: ProfilesOfRoomsUpsertWithWhereUniqueWithoutRoomInput | ProfilesOfRoomsUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: ProfilesOfRoomsCreateManyRoomInputEnvelope
+    set?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    disconnect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    delete?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    update?: ProfilesOfRoomsUpdateWithWhereUniqueWithoutRoomInput | ProfilesOfRoomsUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: ProfilesOfRoomsUpdateManyWithWhereWithoutRoomInput | ProfilesOfRoomsUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: ProfilesOfRoomsScalarWhereInput | ProfilesOfRoomsScalarWhereInput[]
+  }
+
   export type ShelfUncheckedUpdateManyWithoutRoomNestedInput = {
     create?: XOR<ShelfCreateWithoutRoomInput, ShelfUncheckedCreateWithoutRoomInput> | ShelfCreateWithoutRoomInput[] | ShelfUncheckedCreateWithoutRoomInput[]
     connectOrCreate?: ShelfCreateOrConnectWithoutRoomInput | ShelfCreateOrConnectWithoutRoomInput[]
@@ -6346,6 +7504,48 @@ export namespace Prisma {
     update?: ShelfUpdateWithWhereUniqueWithoutRoomInput | ShelfUpdateWithWhereUniqueWithoutRoomInput[]
     updateMany?: ShelfUpdateManyWithWhereWithoutRoomInput | ShelfUpdateManyWithWhereWithoutRoomInput[]
     deleteMany?: ShelfScalarWhereInput | ShelfScalarWhereInput[]
+  }
+
+  export type ProfilesOfRoomsUncheckedUpdateManyWithoutRoomNestedInput = {
+    create?: XOR<ProfilesOfRoomsCreateWithoutRoomInput, ProfilesOfRoomsUncheckedCreateWithoutRoomInput> | ProfilesOfRoomsCreateWithoutRoomInput[] | ProfilesOfRoomsUncheckedCreateWithoutRoomInput[]
+    connectOrCreate?: ProfilesOfRoomsCreateOrConnectWithoutRoomInput | ProfilesOfRoomsCreateOrConnectWithoutRoomInput[]
+    upsert?: ProfilesOfRoomsUpsertWithWhereUniqueWithoutRoomInput | ProfilesOfRoomsUpsertWithWhereUniqueWithoutRoomInput[]
+    createMany?: ProfilesOfRoomsCreateManyRoomInputEnvelope
+    set?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    disconnect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    delete?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    connect?: ProfilesOfRoomsWhereUniqueInput | ProfilesOfRoomsWhereUniqueInput[]
+    update?: ProfilesOfRoomsUpdateWithWhereUniqueWithoutRoomInput | ProfilesOfRoomsUpdateWithWhereUniqueWithoutRoomInput[]
+    updateMany?: ProfilesOfRoomsUpdateManyWithWhereWithoutRoomInput | ProfilesOfRoomsUpdateManyWithWhereWithoutRoomInput[]
+    deleteMany?: ProfilesOfRoomsScalarWhereInput | ProfilesOfRoomsScalarWhereInput[]
+  }
+
+  export type ProfileCreateNestedOneWithoutProfilesOfRoomsInput = {
+    create?: XOR<ProfileCreateWithoutProfilesOfRoomsInput, ProfileUncheckedCreateWithoutProfilesOfRoomsInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutProfilesOfRoomsInput
+    connect?: ProfileWhereUniqueInput
+  }
+
+  export type RoomCreateNestedOneWithoutProfilesOfRoomsInput = {
+    create?: XOR<RoomCreateWithoutProfilesOfRoomsInput, RoomUncheckedCreateWithoutProfilesOfRoomsInput>
+    connectOrCreate?: RoomCreateOrConnectWithoutProfilesOfRoomsInput
+    connect?: RoomWhereUniqueInput
+  }
+
+  export type ProfileUpdateOneRequiredWithoutProfilesOfRoomsNestedInput = {
+    create?: XOR<ProfileCreateWithoutProfilesOfRoomsInput, ProfileUncheckedCreateWithoutProfilesOfRoomsInput>
+    connectOrCreate?: ProfileCreateOrConnectWithoutProfilesOfRoomsInput
+    upsert?: ProfileUpsertWithoutProfilesOfRoomsInput
+    connect?: ProfileWhereUniqueInput
+    update?: XOR<XOR<ProfileUpdateToOneWithWhereWithoutProfilesOfRoomsInput, ProfileUpdateWithoutProfilesOfRoomsInput>, ProfileUncheckedUpdateWithoutProfilesOfRoomsInput>
+  }
+
+  export type RoomUpdateOneRequiredWithoutProfilesOfRoomsNestedInput = {
+    create?: XOR<RoomCreateWithoutProfilesOfRoomsInput, RoomUncheckedCreateWithoutProfilesOfRoomsInput>
+    connectOrCreate?: RoomCreateOrConnectWithoutProfilesOfRoomsInput
+    upsert?: RoomUpsertWithoutProfilesOfRoomsInput
+    connect?: RoomWhereUniqueInput
+    update?: XOR<XOR<RoomUpdateToOneWithWhereWithoutProfilesOfRoomsInput, RoomUpdateWithoutProfilesOfRoomsInput>, RoomUncheckedUpdateWithoutProfilesOfRoomsInput>
   }
 
   export type ProfileCreateNestedOneWithoutShelfsInput = {
@@ -6582,37 +7782,14 @@ export namespace Prisma {
     _max?: NestedEnumItemTypeFilter<$PrismaModel>
   }
 
-  export type RoomCreateWithoutOwnerInput = {
-    name: string
-    description?: string | null
-    shelfs?: ShelfCreateNestedManyWithoutRoomInput
-  }
-
-  export type RoomUncheckedCreateWithoutOwnerInput = {
-    id?: number
-    name: string
-    description?: string | null
-    shelfs?: ShelfUncheckedCreateNestedManyWithoutRoomInput
-  }
-
-  export type RoomCreateOrConnectWithoutOwnerInput = {
-    where: RoomWhereUniqueInput
-    create: XOR<RoomCreateWithoutOwnerInput, RoomUncheckedCreateWithoutOwnerInput>
-  }
-
-  export type RoomCreateManyOwnerInputEnvelope = {
-    data: RoomCreateManyOwnerInput | RoomCreateManyOwnerInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ShelfCreateWithoutOwnerInput = {
+  export type ShelfCreateWithoutProfileInput = {
     name: string
     description?: string | null
     room: RoomCreateNestedOneWithoutShelfsInput
     items?: ItemCreateNestedManyWithoutShelfInput
   }
 
-  export type ShelfUncheckedCreateWithoutOwnerInput = {
+  export type ShelfUncheckedCreateWithoutProfileInput = {
     id?: number
     name: string
     description?: string | null
@@ -6620,24 +7797,24 @@ export namespace Prisma {
     items?: ItemUncheckedCreateNestedManyWithoutShelfInput
   }
 
-  export type ShelfCreateOrConnectWithoutOwnerInput = {
+  export type ShelfCreateOrConnectWithoutProfileInput = {
     where: ShelfWhereUniqueInput
-    create: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
+    create: XOR<ShelfCreateWithoutProfileInput, ShelfUncheckedCreateWithoutProfileInput>
   }
 
-  export type ShelfCreateManyOwnerInputEnvelope = {
-    data: ShelfCreateManyOwnerInput | ShelfCreateManyOwnerInput[]
+  export type ShelfCreateManyProfileInputEnvelope = {
+    data: ShelfCreateManyProfileInput | ShelfCreateManyProfileInput[]
     skipDuplicates?: boolean
   }
 
-  export type ItemCreateWithoutOwnerInput = {
+  export type ItemCreateWithoutProfileInput = {
     name: string
     description?: string | null
     itemType?: $Enums.ItemType
     shelf: ShelfCreateNestedOneWithoutItemsInput
   }
 
-  export type ItemUncheckedCreateWithoutOwnerInput = {
+  export type ItemUncheckedCreateWithoutProfileInput = {
     id?: number
     name: string
     description?: string | null
@@ -6645,56 +7822,48 @@ export namespace Prisma {
     itemType?: $Enums.ItemType
   }
 
-  export type ItemCreateOrConnectWithoutOwnerInput = {
+  export type ItemCreateOrConnectWithoutProfileInput = {
     where: ItemWhereUniqueInput
-    create: XOR<ItemCreateWithoutOwnerInput, ItemUncheckedCreateWithoutOwnerInput>
+    create: XOR<ItemCreateWithoutProfileInput, ItemUncheckedCreateWithoutProfileInput>
   }
 
-  export type ItemCreateManyOwnerInputEnvelope = {
-    data: ItemCreateManyOwnerInput | ItemCreateManyOwnerInput[]
+  export type ItemCreateManyProfileInputEnvelope = {
+    data: ItemCreateManyProfileInput | ItemCreateManyProfileInput[]
     skipDuplicates?: boolean
   }
 
-  export type RoomUpsertWithWhereUniqueWithoutOwnerInput = {
-    where: RoomWhereUniqueInput
-    update: XOR<RoomUpdateWithoutOwnerInput, RoomUncheckedUpdateWithoutOwnerInput>
-    create: XOR<RoomCreateWithoutOwnerInput, RoomUncheckedCreateWithoutOwnerInput>
+  export type ProfilesOfRoomsCreateWithoutProfileInput = {
+    room: RoomCreateNestedOneWithoutProfilesOfRoomsInput
   }
 
-  export type RoomUpdateWithWhereUniqueWithoutOwnerInput = {
-    where: RoomWhereUniqueInput
-    data: XOR<RoomUpdateWithoutOwnerInput, RoomUncheckedUpdateWithoutOwnerInput>
+  export type ProfilesOfRoomsUncheckedCreateWithoutProfileInput = {
+    roomId: number
   }
 
-  export type RoomUpdateManyWithWhereWithoutOwnerInput = {
-    where: RoomScalarWhereInput
-    data: XOR<RoomUpdateManyMutationInput, RoomUncheckedUpdateManyWithoutOwnerInput>
+  export type ProfilesOfRoomsCreateOrConnectWithoutProfileInput = {
+    where: ProfilesOfRoomsWhereUniqueInput
+    create: XOR<ProfilesOfRoomsCreateWithoutProfileInput, ProfilesOfRoomsUncheckedCreateWithoutProfileInput>
   }
 
-  export type RoomScalarWhereInput = {
-    AND?: RoomScalarWhereInput | RoomScalarWhereInput[]
-    OR?: RoomScalarWhereInput[]
-    NOT?: RoomScalarWhereInput | RoomScalarWhereInput[]
-    id?: IntFilter<"Room"> | number
-    name?: StringFilter<"Room"> | string
-    description?: StringNullableFilter<"Room"> | string | null
-    ownerId?: IntFilter<"Room"> | number
+  export type ProfilesOfRoomsCreateManyProfileInputEnvelope = {
+    data: ProfilesOfRoomsCreateManyProfileInput | ProfilesOfRoomsCreateManyProfileInput[]
+    skipDuplicates?: boolean
   }
 
-  export type ShelfUpsertWithWhereUniqueWithoutOwnerInput = {
+  export type ShelfUpsertWithWhereUniqueWithoutProfileInput = {
     where: ShelfWhereUniqueInput
-    update: XOR<ShelfUpdateWithoutOwnerInput, ShelfUncheckedUpdateWithoutOwnerInput>
-    create: XOR<ShelfCreateWithoutOwnerInput, ShelfUncheckedCreateWithoutOwnerInput>
+    update: XOR<ShelfUpdateWithoutProfileInput, ShelfUncheckedUpdateWithoutProfileInput>
+    create: XOR<ShelfCreateWithoutProfileInput, ShelfUncheckedCreateWithoutProfileInput>
   }
 
-  export type ShelfUpdateWithWhereUniqueWithoutOwnerInput = {
+  export type ShelfUpdateWithWhereUniqueWithoutProfileInput = {
     where: ShelfWhereUniqueInput
-    data: XOR<ShelfUpdateWithoutOwnerInput, ShelfUncheckedUpdateWithoutOwnerInput>
+    data: XOR<ShelfUpdateWithoutProfileInput, ShelfUncheckedUpdateWithoutProfileInput>
   }
 
-  export type ShelfUpdateManyWithWhereWithoutOwnerInput = {
+  export type ShelfUpdateManyWithWhereWithoutProfileInput = {
     where: ShelfScalarWhereInput
-    data: XOR<ShelfUpdateManyMutationInput, ShelfUncheckedUpdateManyWithoutOwnerInput>
+    data: XOR<ShelfUpdateManyMutationInput, ShelfUncheckedUpdateManyWithoutProfileInput>
   }
 
   export type ShelfScalarWhereInput = {
@@ -6704,24 +7873,24 @@ export namespace Prisma {
     id?: IntFilter<"Shelf"> | number
     name?: StringFilter<"Shelf"> | string
     description?: StringNullableFilter<"Shelf"> | string | null
-    ownerId?: IntFilter<"Shelf"> | number
+    profileId?: IntFilter<"Shelf"> | number
     roomId?: IntFilter<"Shelf"> | number
   }
 
-  export type ItemUpsertWithWhereUniqueWithoutOwnerInput = {
+  export type ItemUpsertWithWhereUniqueWithoutProfileInput = {
     where: ItemWhereUniqueInput
-    update: XOR<ItemUpdateWithoutOwnerInput, ItemUncheckedUpdateWithoutOwnerInput>
-    create: XOR<ItemCreateWithoutOwnerInput, ItemUncheckedCreateWithoutOwnerInput>
+    update: XOR<ItemUpdateWithoutProfileInput, ItemUncheckedUpdateWithoutProfileInput>
+    create: XOR<ItemCreateWithoutProfileInput, ItemUncheckedCreateWithoutProfileInput>
   }
 
-  export type ItemUpdateWithWhereUniqueWithoutOwnerInput = {
+  export type ItemUpdateWithWhereUniqueWithoutProfileInput = {
     where: ItemWhereUniqueInput
-    data: XOR<ItemUpdateWithoutOwnerInput, ItemUncheckedUpdateWithoutOwnerInput>
+    data: XOR<ItemUpdateWithoutProfileInput, ItemUncheckedUpdateWithoutProfileInput>
   }
 
-  export type ItemUpdateManyWithWhereWithoutOwnerInput = {
+  export type ItemUpdateManyWithWhereWithoutProfileInput = {
     where: ItemScalarWhereInput
-    data: XOR<ItemUpdateManyMutationInput, ItemUncheckedUpdateManyWithoutOwnerInput>
+    data: XOR<ItemUpdateManyMutationInput, ItemUncheckedUpdateManyWithoutProfileInput>
   }
 
   export type ItemScalarWhereInput = {
@@ -6731,35 +7900,39 @@ export namespace Prisma {
     id?: IntFilter<"Item"> | number
     name?: StringFilter<"Item"> | string
     description?: StringNullableFilter<"Item"> | string | null
-    ownerId?: IntFilter<"Item"> | number
+    profileId?: IntFilter<"Item"> | number
     shelfId?: IntFilter<"Item"> | number
     itemType?: EnumItemTypeFilter<"Item"> | $Enums.ItemType
   }
 
-  export type ProfileCreateWithoutRoomsInput = {
-    name: string
-    surname: string
-    shelfs?: ShelfCreateNestedManyWithoutOwnerInput
-    items?: ItemCreateNestedManyWithoutOwnerInput
+  export type ProfilesOfRoomsUpsertWithWhereUniqueWithoutProfileInput = {
+    where: ProfilesOfRoomsWhereUniqueInput
+    update: XOR<ProfilesOfRoomsUpdateWithoutProfileInput, ProfilesOfRoomsUncheckedUpdateWithoutProfileInput>
+    create: XOR<ProfilesOfRoomsCreateWithoutProfileInput, ProfilesOfRoomsUncheckedCreateWithoutProfileInput>
   }
 
-  export type ProfileUncheckedCreateWithoutRoomsInput = {
-    id?: number
-    name: string
-    surname: string
-    shelfs?: ShelfUncheckedCreateNestedManyWithoutOwnerInput
-    items?: ItemUncheckedCreateNestedManyWithoutOwnerInput
+  export type ProfilesOfRoomsUpdateWithWhereUniqueWithoutProfileInput = {
+    where: ProfilesOfRoomsWhereUniqueInput
+    data: XOR<ProfilesOfRoomsUpdateWithoutProfileInput, ProfilesOfRoomsUncheckedUpdateWithoutProfileInput>
   }
 
-  export type ProfileCreateOrConnectWithoutRoomsInput = {
-    where: ProfileWhereUniqueInput
-    create: XOR<ProfileCreateWithoutRoomsInput, ProfileUncheckedCreateWithoutRoomsInput>
+  export type ProfilesOfRoomsUpdateManyWithWhereWithoutProfileInput = {
+    where: ProfilesOfRoomsScalarWhereInput
+    data: XOR<ProfilesOfRoomsUpdateManyMutationInput, ProfilesOfRoomsUncheckedUpdateManyWithoutProfileInput>
+  }
+
+  export type ProfilesOfRoomsScalarWhereInput = {
+    AND?: ProfilesOfRoomsScalarWhereInput | ProfilesOfRoomsScalarWhereInput[]
+    OR?: ProfilesOfRoomsScalarWhereInput[]
+    NOT?: ProfilesOfRoomsScalarWhereInput | ProfilesOfRoomsScalarWhereInput[]
+    profileId?: IntFilter<"ProfilesOfRooms"> | number
+    roomId?: IntFilter<"ProfilesOfRooms"> | number
   }
 
   export type ShelfCreateWithoutRoomInput = {
     name: string
     description?: string | null
-    owner: ProfileCreateNestedOneWithoutShelfsInput
+    profile: ProfileCreateNestedOneWithoutShelfsInput
     items?: ItemCreateNestedManyWithoutShelfInput
   }
 
@@ -6767,7 +7940,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     items?: ItemUncheckedCreateNestedManyWithoutShelfInput
   }
 
@@ -6781,30 +7954,22 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type ProfileUpsertWithoutRoomsInput = {
-    update: XOR<ProfileUpdateWithoutRoomsInput, ProfileUncheckedUpdateWithoutRoomsInput>
-    create: XOR<ProfileCreateWithoutRoomsInput, ProfileUncheckedCreateWithoutRoomsInput>
-    where?: ProfileWhereInput
+  export type ProfilesOfRoomsCreateWithoutRoomInput = {
+    profile: ProfileCreateNestedOneWithoutProfilesOfRoomsInput
   }
 
-  export type ProfileUpdateToOneWithWhereWithoutRoomsInput = {
-    where?: ProfileWhereInput
-    data: XOR<ProfileUpdateWithoutRoomsInput, ProfileUncheckedUpdateWithoutRoomsInput>
+  export type ProfilesOfRoomsUncheckedCreateWithoutRoomInput = {
+    profileId: number
   }
 
-  export type ProfileUpdateWithoutRoomsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    surname?: StringFieldUpdateOperationsInput | string
-    shelfs?: ShelfUpdateManyWithoutOwnerNestedInput
-    items?: ItemUpdateManyWithoutOwnerNestedInput
+  export type ProfilesOfRoomsCreateOrConnectWithoutRoomInput = {
+    where: ProfilesOfRoomsWhereUniqueInput
+    create: XOR<ProfilesOfRoomsCreateWithoutRoomInput, ProfilesOfRoomsUncheckedCreateWithoutRoomInput>
   }
 
-  export type ProfileUncheckedUpdateWithoutRoomsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    surname?: StringFieldUpdateOperationsInput | string
-    shelfs?: ShelfUncheckedUpdateManyWithoutOwnerNestedInput
-    items?: ItemUncheckedUpdateManyWithoutOwnerNestedInput
+  export type ProfilesOfRoomsCreateManyRoomInputEnvelope = {
+    data: ProfilesOfRoomsCreateManyRoomInput | ProfilesOfRoomsCreateManyRoomInput[]
+    skipDuplicates?: boolean
   }
 
   export type ShelfUpsertWithWhereUniqueWithoutRoomInput = {
@@ -6823,19 +7988,123 @@ export namespace Prisma {
     data: XOR<ShelfUpdateManyMutationInput, ShelfUncheckedUpdateManyWithoutRoomInput>
   }
 
+  export type ProfilesOfRoomsUpsertWithWhereUniqueWithoutRoomInput = {
+    where: ProfilesOfRoomsWhereUniqueInput
+    update: XOR<ProfilesOfRoomsUpdateWithoutRoomInput, ProfilesOfRoomsUncheckedUpdateWithoutRoomInput>
+    create: XOR<ProfilesOfRoomsCreateWithoutRoomInput, ProfilesOfRoomsUncheckedCreateWithoutRoomInput>
+  }
+
+  export type ProfilesOfRoomsUpdateWithWhereUniqueWithoutRoomInput = {
+    where: ProfilesOfRoomsWhereUniqueInput
+    data: XOR<ProfilesOfRoomsUpdateWithoutRoomInput, ProfilesOfRoomsUncheckedUpdateWithoutRoomInput>
+  }
+
+  export type ProfilesOfRoomsUpdateManyWithWhereWithoutRoomInput = {
+    where: ProfilesOfRoomsScalarWhereInput
+    data: XOR<ProfilesOfRoomsUpdateManyMutationInput, ProfilesOfRoomsUncheckedUpdateManyWithoutRoomInput>
+  }
+
+  export type ProfileCreateWithoutProfilesOfRoomsInput = {
+    name: string
+    surname: string
+    shelfs?: ShelfCreateNestedManyWithoutProfileInput
+    items?: ItemCreateNestedManyWithoutProfileInput
+  }
+
+  export type ProfileUncheckedCreateWithoutProfilesOfRoomsInput = {
+    id?: number
+    name: string
+    surname: string
+    shelfs?: ShelfUncheckedCreateNestedManyWithoutProfileInput
+    items?: ItemUncheckedCreateNestedManyWithoutProfileInput
+  }
+
+  export type ProfileCreateOrConnectWithoutProfilesOfRoomsInput = {
+    where: ProfileWhereUniqueInput
+    create: XOR<ProfileCreateWithoutProfilesOfRoomsInput, ProfileUncheckedCreateWithoutProfilesOfRoomsInput>
+  }
+
+  export type RoomCreateWithoutProfilesOfRoomsInput = {
+    name: string
+    description?: string | null
+    shelfs?: ShelfCreateNestedManyWithoutRoomInput
+  }
+
+  export type RoomUncheckedCreateWithoutProfilesOfRoomsInput = {
+    id?: number
+    name: string
+    description?: string | null
+    shelfs?: ShelfUncheckedCreateNestedManyWithoutRoomInput
+  }
+
+  export type RoomCreateOrConnectWithoutProfilesOfRoomsInput = {
+    where: RoomWhereUniqueInput
+    create: XOR<RoomCreateWithoutProfilesOfRoomsInput, RoomUncheckedCreateWithoutProfilesOfRoomsInput>
+  }
+
+  export type ProfileUpsertWithoutProfilesOfRoomsInput = {
+    update: XOR<ProfileUpdateWithoutProfilesOfRoomsInput, ProfileUncheckedUpdateWithoutProfilesOfRoomsInput>
+    create: XOR<ProfileCreateWithoutProfilesOfRoomsInput, ProfileUncheckedCreateWithoutProfilesOfRoomsInput>
+    where?: ProfileWhereInput
+  }
+
+  export type ProfileUpdateToOneWithWhereWithoutProfilesOfRoomsInput = {
+    where?: ProfileWhereInput
+    data: XOR<ProfileUpdateWithoutProfilesOfRoomsInput, ProfileUncheckedUpdateWithoutProfilesOfRoomsInput>
+  }
+
+  export type ProfileUpdateWithoutProfilesOfRoomsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    surname?: StringFieldUpdateOperationsInput | string
+    shelfs?: ShelfUpdateManyWithoutProfileNestedInput
+    items?: ItemUpdateManyWithoutProfileNestedInput
+  }
+
+  export type ProfileUncheckedUpdateWithoutProfilesOfRoomsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    surname?: StringFieldUpdateOperationsInput | string
+    shelfs?: ShelfUncheckedUpdateManyWithoutProfileNestedInput
+    items?: ItemUncheckedUpdateManyWithoutProfileNestedInput
+  }
+
+  export type RoomUpsertWithoutProfilesOfRoomsInput = {
+    update: XOR<RoomUpdateWithoutProfilesOfRoomsInput, RoomUncheckedUpdateWithoutProfilesOfRoomsInput>
+    create: XOR<RoomCreateWithoutProfilesOfRoomsInput, RoomUncheckedCreateWithoutProfilesOfRoomsInput>
+    where?: RoomWhereInput
+  }
+
+  export type RoomUpdateToOneWithWhereWithoutProfilesOfRoomsInput = {
+    where?: RoomWhereInput
+    data: XOR<RoomUpdateWithoutProfilesOfRoomsInput, RoomUncheckedUpdateWithoutProfilesOfRoomsInput>
+  }
+
+  export type RoomUpdateWithoutProfilesOfRoomsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    shelfs?: ShelfUpdateManyWithoutRoomNestedInput
+  }
+
+  export type RoomUncheckedUpdateWithoutProfilesOfRoomsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    shelfs?: ShelfUncheckedUpdateManyWithoutRoomNestedInput
+  }
+
   export type ProfileCreateWithoutShelfsInput = {
     name: string
     surname: string
-    rooms?: RoomCreateNestedManyWithoutOwnerInput
-    items?: ItemCreateNestedManyWithoutOwnerInput
+    items?: ItemCreateNestedManyWithoutProfileInput
+    profilesOfRooms?: ProfilesOfRoomsCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutShelfsInput = {
     id?: number
     name: string
     surname: string
-    rooms?: RoomUncheckedCreateNestedManyWithoutOwnerInput
-    items?: ItemUncheckedCreateNestedManyWithoutOwnerInput
+    items?: ItemUncheckedCreateNestedManyWithoutProfileInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutShelfsInput = {
@@ -6846,14 +8115,14 @@ export namespace Prisma {
   export type RoomCreateWithoutShelfsInput = {
     name: string
     description?: string | null
-    owner: ProfileCreateNestedOneWithoutRoomsInput
+    profilesOfRooms?: ProfilesOfRoomsCreateNestedManyWithoutRoomInput
   }
 
   export type RoomUncheckedCreateWithoutShelfsInput = {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profilesOfRooms?: ProfilesOfRoomsUncheckedCreateNestedManyWithoutRoomInput
   }
 
   export type RoomCreateOrConnectWithoutShelfsInput = {
@@ -6865,14 +8134,14 @@ export namespace Prisma {
     name: string
     description?: string | null
     itemType?: $Enums.ItemType
-    owner: ProfileCreateNestedOneWithoutItemsInput
+    profile: ProfileCreateNestedOneWithoutItemsInput
   }
 
   export type ItemUncheckedCreateWithoutShelfInput = {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     itemType?: $Enums.ItemType
   }
 
@@ -6900,16 +8169,16 @@ export namespace Prisma {
   export type ProfileUpdateWithoutShelfsInput = {
     name?: StringFieldUpdateOperationsInput | string
     surname?: StringFieldUpdateOperationsInput | string
-    rooms?: RoomUpdateManyWithoutOwnerNestedInput
-    items?: ItemUpdateManyWithoutOwnerNestedInput
+    items?: ItemUpdateManyWithoutProfileNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutShelfsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     surname?: StringFieldUpdateOperationsInput | string
-    rooms?: RoomUncheckedUpdateManyWithoutOwnerNestedInput
-    items?: ItemUncheckedUpdateManyWithoutOwnerNestedInput
+    items?: ItemUncheckedUpdateManyWithoutProfileNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type RoomUpsertWithoutShelfsInput = {
@@ -6926,14 +8195,14 @@ export namespace Prisma {
   export type RoomUpdateWithoutShelfsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    owner?: ProfileUpdateOneRequiredWithoutRoomsNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUpdateManyWithoutRoomNestedInput
   }
 
   export type RoomUncheckedUpdateWithoutShelfsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profilesOfRooms?: ProfilesOfRoomsUncheckedUpdateManyWithoutRoomNestedInput
   }
 
   export type ItemUpsertWithWhereUniqueWithoutShelfInput = {
@@ -6955,16 +8224,16 @@ export namespace Prisma {
   export type ProfileCreateWithoutItemsInput = {
     name: string
     surname: string
-    rooms?: RoomCreateNestedManyWithoutOwnerInput
-    shelfs?: ShelfCreateNestedManyWithoutOwnerInput
+    shelfs?: ShelfCreateNestedManyWithoutProfileInput
+    profilesOfRooms?: ProfilesOfRoomsCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileUncheckedCreateWithoutItemsInput = {
     id?: number
     name: string
     surname: string
-    rooms?: RoomUncheckedCreateNestedManyWithoutOwnerInput
-    shelfs?: ShelfUncheckedCreateNestedManyWithoutOwnerInput
+    shelfs?: ShelfUncheckedCreateNestedManyWithoutProfileInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedCreateNestedManyWithoutProfileInput
   }
 
   export type ProfileCreateOrConnectWithoutItemsInput = {
@@ -6975,7 +8244,7 @@ export namespace Prisma {
   export type ShelfCreateWithoutItemsInput = {
     name: string
     description?: string | null
-    owner: ProfileCreateNestedOneWithoutShelfsInput
+    profile: ProfileCreateNestedOneWithoutShelfsInput
     room: RoomCreateNestedOneWithoutShelfsInput
   }
 
@@ -6983,7 +8252,7 @@ export namespace Prisma {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     roomId: number
   }
 
@@ -7006,16 +8275,16 @@ export namespace Prisma {
   export type ProfileUpdateWithoutItemsInput = {
     name?: StringFieldUpdateOperationsInput | string
     surname?: StringFieldUpdateOperationsInput | string
-    rooms?: RoomUpdateManyWithoutOwnerNestedInput
-    shelfs?: ShelfUpdateManyWithoutOwnerNestedInput
+    shelfs?: ShelfUpdateManyWithoutProfileNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUpdateManyWithoutProfileNestedInput
   }
 
   export type ProfileUncheckedUpdateWithoutItemsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     surname?: StringFieldUpdateOperationsInput | string
-    rooms?: RoomUncheckedUpdateManyWithoutOwnerNestedInput
-    shelfs?: ShelfUncheckedUpdateManyWithoutOwnerNestedInput
+    shelfs?: ShelfUncheckedUpdateManyWithoutProfileNestedInput
+    profilesOfRooms?: ProfilesOfRoomsUncheckedUpdateManyWithoutProfileNestedInput
   }
 
   export type ShelfUpsertWithoutItemsInput = {
@@ -7032,7 +8301,7 @@ export namespace Prisma {
   export type ShelfUpdateWithoutItemsInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    owner?: ProfileUpdateOneRequiredWithoutShelfsNestedInput
+    profile?: ProfileUpdateOneRequiredWithoutShelfsNestedInput
     room?: RoomUpdateOneRequiredWithoutShelfsNestedInput
   }
 
@@ -7040,24 +8309,18 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     roomId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type RoomCreateManyOwnerInput = {
-    id?: number
-    name: string
-    description?: string | null
-  }
-
-  export type ShelfCreateManyOwnerInput = {
+  export type ShelfCreateManyProfileInput = {
     id?: number
     name: string
     description?: string | null
     roomId: number
   }
 
-  export type ItemCreateManyOwnerInput = {
+  export type ItemCreateManyProfileInput = {
     id?: number
     name: string
     description?: string | null
@@ -7065,33 +8328,18 @@ export namespace Prisma {
     itemType?: $Enums.ItemType
   }
 
-  export type RoomUpdateWithoutOwnerInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shelfs?: ShelfUpdateManyWithoutRoomNestedInput
+  export type ProfilesOfRoomsCreateManyProfileInput = {
+    roomId: number
   }
 
-  export type RoomUncheckedUpdateWithoutOwnerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    shelfs?: ShelfUncheckedUpdateManyWithoutRoomNestedInput
-  }
-
-  export type RoomUncheckedUpdateManyWithoutOwnerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type ShelfUpdateWithoutOwnerInput = {
+  export type ShelfUpdateWithoutProfileInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     room?: RoomUpdateOneRequiredWithoutShelfsNestedInput
     items?: ItemUpdateManyWithoutShelfNestedInput
   }
 
-  export type ShelfUncheckedUpdateWithoutOwnerInput = {
+  export type ShelfUncheckedUpdateWithoutProfileInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7099,21 +8347,21 @@ export namespace Prisma {
     items?: ItemUncheckedUpdateManyWithoutShelfNestedInput
   }
 
-  export type ShelfUncheckedUpdateManyWithoutOwnerInput = {
+  export type ShelfUncheckedUpdateManyWithoutProfileInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     roomId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type ItemUpdateWithoutOwnerInput = {
+  export type ItemUpdateWithoutProfileInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
     shelf?: ShelfUpdateOneRequiredWithoutItemsNestedInput
   }
 
-  export type ItemUncheckedUpdateWithoutOwnerInput = {
+  export type ItemUncheckedUpdateWithoutProfileInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -7121,25 +8369,41 @@ export namespace Prisma {
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
   }
 
-  export type ItemUncheckedUpdateManyWithoutOwnerInput = {
+  export type ItemUncheckedUpdateManyWithoutProfileInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     shelfId?: IntFieldUpdateOperationsInput | number
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
+  }
+
+  export type ProfilesOfRoomsUpdateWithoutProfileInput = {
+    room?: RoomUpdateOneRequiredWithoutProfilesOfRoomsNestedInput
+  }
+
+  export type ProfilesOfRoomsUncheckedUpdateWithoutProfileInput = {
+    roomId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProfilesOfRoomsUncheckedUpdateManyWithoutProfileInput = {
+    roomId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ShelfCreateManyRoomInput = {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
+  }
+
+  export type ProfilesOfRoomsCreateManyRoomInput = {
+    profileId: number
   }
 
   export type ShelfUpdateWithoutRoomInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    owner?: ProfileUpdateOneRequiredWithoutShelfsNestedInput
+    profile?: ProfileUpdateOneRequiredWithoutShelfsNestedInput
     items?: ItemUpdateManyWithoutShelfNestedInput
   }
 
@@ -7147,7 +8411,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     items?: ItemUncheckedUpdateManyWithoutShelfNestedInput
   }
 
@@ -7155,14 +8419,26 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProfilesOfRoomsUpdateWithoutRoomInput = {
+    profile?: ProfileUpdateOneRequiredWithoutProfilesOfRoomsNestedInput
+  }
+
+  export type ProfilesOfRoomsUncheckedUpdateWithoutRoomInput = {
+    profileId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProfilesOfRoomsUncheckedUpdateManyWithoutRoomInput = {
+    profileId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ItemCreateManyShelfInput = {
     id?: number
     name: string
     description?: string | null
-    ownerId: number
+    profileId: number
     itemType?: $Enums.ItemType
   }
 
@@ -7170,14 +8446,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
-    owner?: ProfileUpdateOneRequiredWithoutItemsNestedInput
+    profile?: ProfileUpdateOneRequiredWithoutItemsNestedInput
   }
 
   export type ItemUncheckedUpdateWithoutShelfInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
   }
 
@@ -7185,7 +8461,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    ownerId?: IntFieldUpdateOperationsInput | number
+    profileId?: IntFieldUpdateOperationsInput | number
     itemType?: EnumItemTypeFieldUpdateOperationsInput | $Enums.ItemType
   }
 

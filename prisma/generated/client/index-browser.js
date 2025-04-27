@@ -126,15 +126,19 @@ exports.Prisma.ProfileScalarFieldEnum = {
 exports.Prisma.RoomScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  description: 'description',
-  ownerId: 'ownerId'
+  description: 'description'
+};
+
+exports.Prisma.ProfilesOfRoomsScalarFieldEnum = {
+  profileId: 'profileId',
+  roomId: 'roomId'
 };
 
 exports.Prisma.ShelfScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  ownerId: 'ownerId',
+  profileId: 'profileId',
   roomId: 'roomId'
 };
 
@@ -142,7 +146,7 @@ exports.Prisma.ItemScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  ownerId: 'ownerId',
+  profileId: 'profileId',
   shelfId: 'shelfId',
   itemType: 'itemType'
 };
@@ -188,6 +192,7 @@ exports.ItemType = exports.$Enums.ItemType = {
 exports.Prisma.ModelName = {
   Profile: 'Profile',
   Room: 'Room',
+  ProfilesOfRooms: 'ProfilesOfRooms',
   Shelf: 'Shelf',
   Item: 'Item'
 };

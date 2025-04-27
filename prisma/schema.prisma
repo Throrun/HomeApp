@@ -15,29 +15,37 @@ datasource db {
 }
 
 model Profile {
-  id      Int     @id @default(autoincrement())
-  name    String
-  surname String
-  rooms   Room[]
-  shelfs  Shelf[]
-  items   Item[]
+  id              Int               @id @default(autoincrement())
+  name            String
+  surname         String
+  shelfs          Shelf[]
+  items           Item[]
+  profilesOfRooms ProfilesOfRooms[]
 }
 
 model Room {
-  id          Int     @id @default(autoincrement())
-  name        String
-  description String?
-  owner       Profile @relation(fields: [ownerId], references: [id])
-  ownerId     Int
-  shelfs      Shelf[]
+  id              Int               @id @default(autoincrement())
+  name            String
+  description     String?
+  shelfs          Shelf[]
+  profilesOfRooms ProfilesOfRooms[]
+}
+
+model ProfilesOfRooms {
+  profile   Profile @relation(fields: [profileId], references: [id])
+  profileId Int
+  room      Room    @relation(fields: [roomId], references: [id])
+  roomId    Int
+
+  @@id([profileId, roomId])
 }
 
 model Shelf {
   id          Int     @id @default(autoincrement())
   name        String
   description String?
-  owner       Profile @relation(fields: [ownerId], references: [id])
-  ownerId     Int
+  profile     Profile @relation(fields: [profileId], references: [id])
+  profileId   Int
   room        Room    @relation(fields: [roomId], references: [id])
   roomId      Int
   items       Item[]
@@ -47,8 +55,8 @@ model Item {
   id          Int      @id @default(autoincrement())
   name        String
   description String?
-  owner       Profile  @relation(fields: [ownerId], references: [id])
-  ownerId     Int
+  profile     Profile  @relation(fields: [profileId], references: [id])
+  profileId   Int
   shelf       Shelf    @relation(fields: [shelfId], references: [id])
   shelfId     Int
   itemType    ItemType @default(NONE)
