@@ -1,5 +1,22 @@
 .inputBox {
     padding: 10px 20px;
     border-radius: 30px;
-    border-color: ;
+    background-color: var(--input);
+    box-sizing: border-box;
+    border: 0ch;
 }
+
+.inputBox:hover,
+.inputBox:focus {
+    border: var(--secondary);
+    transition: none;
+}
+
+
+/* ↓ 1. LAYOUT ↓ */
+
+/* ↓ 2. ELEMENTY ↓ */
+
+/* ↓ 3. STANY / MODYFIKATORY ↓ */
+
+/* ↓ 4. HELPERY (jeśli potrzebne) ↓ */

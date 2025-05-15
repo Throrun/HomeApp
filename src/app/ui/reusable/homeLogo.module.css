@@ -1,0 +1,8 @@
+.logoWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    gap: 20px;
+    padding: 20px;
+}

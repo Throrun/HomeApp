@@ -1,15 +1,12 @@
 import styles from "./page.module.css";
+import Header from "./ui/reusable/header";
 import Input from "./ui/reusable/input";
+import LoginForm from "./ui/unique/loginForm";
 export default function Home() {
   return (
-
-    // <div className={styles.page}>
     <main>
-      <Input name="Input BOX"></Input>
+      <Header variant="login" />
+      <LoginForm />
     </main>
-    //   <footer className={styles.footer}>
-
-    //   </footer>
-    // </div>
   );
 }
