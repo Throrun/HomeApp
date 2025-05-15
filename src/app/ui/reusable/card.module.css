@@ -1,0 +1,15 @@
+.card {
+  background-color: var(--card);
+  color: var(--background);
+  padding: 16px;
+  border-radius: 8px;
+  height: 12.5em;
+}
+
+.span-1 {
+  grid-column: span 1;
+}
+
+.span-2 {
+  grid-column: span 2;
+}
