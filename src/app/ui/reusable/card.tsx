@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './card.module.css'
 
-const Card = ({ name, span }: { name: string, span: number }) => {
+const Card = ({ name, columnSpan, rowSpan }: { name: string, columnSpan: number, rowSpan: number }) => {
     return (
-        <div className={`${styles.card} ${styles[`span-${span}`]}`}>
+        <div className={`${styles.card} ${styles[`cspan-${columnSpan}`]} ${styles[`rspan-${rowSpan}`]}`}>
             <h3>{name}</h3>
             <div>
                 {/* tutaj małe listy */}

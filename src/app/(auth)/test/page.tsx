@@ -1,9 +1,9 @@
-import Cards from '../../ui/unique/cards';
+import MainMenu from '@/app/ui/unique/mainMenu';
 
 export default function Home() {
   return (
     <main>
-      <Cards />
+      <MainMenu/>
     </main>
   );
 }

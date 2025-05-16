@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2em;
+  box-shadow: 0 2px 4px rgba(111, 111, 111, 0.2)
+}
+
+.searchbar {
+  padding: 1em 2em;
+  border-radius: 2em;
+  border: none;
+  width: 30em;
+  background-color: var(--card);
+  color: var(--input);
+  font-weight: 600;
+}
+
+input::placeholder {
+    color: var(--input);
+    font-weight: 600;
+}

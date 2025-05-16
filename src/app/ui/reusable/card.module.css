@@ -3,13 +3,22 @@
   color: var(--background);
   padding: 16px;
   border-radius: 8px;
-  height: 12.5em;
+  height: 10em;
 }
 
-.span-1 {
+.cspan-1 {
   grid-column: span 1;
 }
 
-.span-2 {
+.cspan-2 {
   grid-column: span 2;
+}
+
+.rspan-1 {
+  grid-row: span 1;
+}
+
+.rspan-2 {
+  grid-row: span 2;
+  height: auto;
 }
