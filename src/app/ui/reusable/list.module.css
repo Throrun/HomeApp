@@ -1,0 +1,22 @@
+.list {
+  background-color: var(--card);
+  color: var(--background);
+  padding: 1em;
+  border-radius: 0.5em;
+  height: auto;
+}
+
+.list ul {
+  list-style: none;
+  padding: 1em;
+  margin: 1em;
+}
+
+.list li {
+  padding: 1em;
+  background-color: var(--background);
+  color: var(--card);
+  margin-bottom: 1em;
+  border-radius: 1em;
+  font-weight: 600;
+}

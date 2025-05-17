@@ -6,7 +6,7 @@ import Profile from './profile';
 import Cards from './cards';
 import styles from './mainMenu.module.css';
 
-const Layout = () => {
+const MainMenu = () => {
     return (
         <div className={styles.container}>
             <Navbar />
@@ -22,4 +22,4 @@ const Layout = () => {
     );
 };
 
-export default Layout;
+export default MainMenu;
