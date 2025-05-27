@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import styles from './list.module.css';
+import React, { useEffect, useState } from "react";
+import styles from "./list.module.css";
 
 type Item = {
   id: number;
@@ -15,13 +15,12 @@ const List = ({ name }: { name: string }) => {
   useEffect(() => {
     const getItemsFromDB = async () => {
       try {
-        const response = await fetch(`/api/list/${name}`);
-        if (!response.ok) throw new Error('Błąd pobierania danych');
-
+        const response = await fetch(`/api/list/${name.toLowerCase()}`);
         const data: Item[] = await response.json();
+        console.log("Fetched data for", name, data);
         setItems(data);
       } catch (error) {
-        console.error('Błąd:', error);
+        console.error("Błąd:", error);
         setItems([]);
       } finally {
         setLoading(false);
@@ -33,16 +32,20 @@ const List = ({ name }: { name: string }) => {
 
   return (
     <div className={styles.list}>
-      <h3>{name}</h3>
       <div>
-        {loading ? ( <p>Ładowanie...</p>
+        {loading ? (
+          <p>Ładowanie...</p>
         ) : items.length > 0 ? (
           <ul>
-            {items.map(item => (
-              <li key={item.id}>{item.id}. {item.value}</li>
+            {items.map((item) => (
+              <li key={item.id}>
+                {item.id}. {item.value}
+              </li>
             ))}
-          </ul>) : 
-          ( <p>Brak danych.</p> )}
+          </ul>
+        ) : (
+          <p>Brak danych.</p>
+        )}
       </div>
     </div>
   );
