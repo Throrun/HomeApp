@@ -1,0 +1,10 @@
+.listcontainer {
+  display: flex;
+  justify-content: center;
+  padding: 2rem; /* odstęp od krawędzi ekranu */
+}
+
+.contentWrapper {
+  width: 90%;
+  max-width: 1280px;
+}
