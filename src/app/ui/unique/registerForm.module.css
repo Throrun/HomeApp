@@ -1,7 +1,7 @@
 .formWrapper {
     display: flex;
     justify-content: center;
-
+    margin: 13%;
 }
 
 .box {
@@ -10,6 +10,7 @@
     flex-direction: column;
     display: flex;
     gap: 20px;
+    width: 370px;
 }
 
 .login {
