@@ -1,0 +1,35 @@
+.card {
+  background-color: var(--card);
+  color: var(--background);
+  padding: 1em;
+  border-radius: 0.5em;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  background-color: #4d4d4d;
+  transform: scale(1.01);
+}
+
+.card h4 {
+  padding: 1em;
+}
+
+.cspan-1 {
+  grid-column: span 1;
+}
+
+.cspan-2 {
+  grid-column: span 2;
+}
+
+.rspan-1 {
+  grid-row: span 1;
+}
+
+.rspan-2 {
+  grid-row: span 2;
+}

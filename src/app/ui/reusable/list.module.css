@@ -1,0 +1,19 @@
+.list {
+  color: var(--background);
+  height: auto;
+  margin: 1em;
+  overflow-y: auto;
+}
+
+.list ul {
+  list-style: none;
+}
+
+.list li {
+  padding: 0.5em;
+  background-color: var(--background);
+  color: var(--card);
+  margin-bottom: 1em;
+  border-radius: 1em;
+  font-weight: 600;
+}
