@@ -5,7 +5,7 @@ import Card, {CardContent} from "@/app/ui/reusable/card";
 import styles from "./page.module.css";
 
 
-export default function Items() {
+export default function Shelfs() {
   return (
     <main>
       <Navbar />

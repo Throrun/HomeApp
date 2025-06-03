@@ -3,5 +3,3 @@ export async function GET() {
 }
 
 // export async function POST(request: Request) { }//TODO Adding new profile
-
-// export async function DELETE(request: Request) { }//TODO Deletion of profile

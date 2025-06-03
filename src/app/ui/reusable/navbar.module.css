@@ -12,13 +12,13 @@
   border: none;
   width: 30em;
   background-color: var(--card);
-  color: var(--input);
+  color: var(--inputs);
   font-weight: 600;
   transition: background-color 0.2s ease;
   cursor: pointer;
 }
 
-input::placeholder {
+.searchbar::placeholder {
   color: var(--input);
   font-weight: 600;
 }
