@@ -9,16 +9,6 @@ services:
       - "3306:3306"
     volumes:
       - mysql-data:/var/lib/mysql
-  home-app:
-    image: home-app-docker
-    container_name: home-app-docker
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWD}
-      MYSQL_DATABASE: ${DATABASE_NAME}
-    ports:
-      - "3000:3000"
-    # volumes:
-
 
 volumes:
   mysql-data:
