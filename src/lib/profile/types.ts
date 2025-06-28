@@ -11,3 +11,8 @@ export interface CreateProfileDTO {
     name: string;
     surname: string;
 }
+export interface UpdateProfileDTO {
+    id: number;
+    name?: string;
+    surname?: string;
+}

@@ -15,3 +15,11 @@ export interface CreateItemDTO {
     shelfId: number; 
     itemType: string;
 }
+
+export interface UpdateItemDTO {
+    id: number;
+    name?: string;
+    description?: string;
+    shelfId?: number;
+    itemType?: string;
+}
